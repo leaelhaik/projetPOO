@@ -1,10 +1,10 @@
-import gui.*;
+//import gui.*;
 
 import java.awt.Point;
 
 public class TestBalls
 {
-  public static void main(String[] args) throws Exception
+  public static void main(String[] args) 
   {
     Balls B = new Balls(3);
     B.tab[0] = new Point(0,2);
