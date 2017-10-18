@@ -10,7 +10,7 @@ public class Balls extends Point
     this.tab = new Point[nb];
     for(int i = 0;i<nb;i++)
     {
-      this.tab[i] = new Point(i,i);
+      this.tab[i] = new Point(10*i,10*i);
     }
   }
 

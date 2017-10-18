@@ -15,13 +15,15 @@ public class BallsSimulator extends Balls implements Simulable
 @Override
 public void next ()
 {
-  this.pointsSimulables.translate(10,10);
+  this.translate(10,10);
+  System.out.println(this.toString());
 }
 
 @Override
 public void restart ()
 {
-  this.pointsSimulables.reInit();
+  this.reInit();
+  System.out.println(this.toString());
 }
 
 
