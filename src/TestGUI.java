@@ -1,6 +1,5 @@
 
 import gui.*;
-import Balls.*;
 import java.awt.Color;
 
 public class TestGUI {

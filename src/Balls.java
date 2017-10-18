@@ -1,7 +1,7 @@
 import java.awt.Point;
 
 
-public class Balls
+public class Balls extends Point
 {
   public Point[] tab;
 
@@ -10,7 +10,7 @@ public class Balls
     this.tab = new Point[nb];
     for(int i = 0;i<nb;i++)
     {
-      this.tab[i] = new Point(0,0);
+      this.tab[i] = new Point(i,i);
     }
   }
 
@@ -22,8 +22,8 @@ public class Balls
 			s += "(" + this.tab[i].x + ", " + this.tab[i].y + ")"  ;
 		return s;
 	}
-
-  void translate(int dx, int dy)
+  @Override
+  public void translate(int dx, int dy)
   {
     for(int i = 0;i<tab.length;i++)
     {
@@ -36,7 +36,7 @@ public class Balls
   {
     for(int i =0; i< tab.length;i++)
     {
-      this.tab[i].setLocation(0,0);
+      this.tab[i].setLocation(i,i);
     }
   }
 }
