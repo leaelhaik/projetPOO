@@ -28,7 +28,7 @@ public Grid(Grid grid) {
 	this.cellMat= new Cell[grid.getLength()][grid.getWidth()];
 	for (int i=0; i < grid.getLength(); i++) {
 		for (int j = 0; j < grid.getWidth(); j++) {
-			this.cellMat[i][j]=getCell(i,j);
+			this.cellMat[i][j]=new Cell(i,j,grid.getCell(i, j).getCellState());
 		}
 	}
 }
@@ -69,6 +69,11 @@ public int countAlives(int i, int j) {
 		}
 	}
 	return count;
+}
+
+
+public void setStateCell(int i, int j, CellState cellState) {
+	this.getCell(i, j).setCellState(cellState);
 }
 
 public int getLength() {

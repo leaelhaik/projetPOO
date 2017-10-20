@@ -37,6 +37,11 @@ public class Cell extends Point {
 		}
 	}
 	
+	public Cell(int x, int y, CellState cellState) {
+		this.setLocation(x,y);
+		this.cellState = cellState;
+	}
+	
 	
 	@Override
 	public String toString() {
