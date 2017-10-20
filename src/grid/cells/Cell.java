@@ -15,16 +15,7 @@ public class Cell extends Point {
 		this.cellState = cellState;
 	}
 	
-	//Constructeur par défaut, qui crée une cellule à (0,0)
-	public Cell() {
-		double i= Math.random();
-		if (i<0.5) {
-			this.cellState = CellState.DEAD;
-		} else {
-			this.cellState = CellState.ALIVE;
-		}
-	}
-	
+
 	
 	//Constructeur qui crée une cellule aux coordonnées x et y
 	public Cell(int x, int y) {

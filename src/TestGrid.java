@@ -5,10 +5,9 @@ public class TestGrid {
 
 	public static void main(String[] args) {
 		Grid grid = new Grid(5,5);
-		System.out.println(grid.toString());	
-		 for (int i=0; i<10; i++) { //trouver une condition d'arret
+	    System.out.println(grid.toString());	
+		for (int i=0; i<10; i++) { //trouver une condition d'arret
 			Grid temp = new Grid(grid); 
-			System.out.println("Temp\n" + temp.toString());
 			
 			for (int k=0; k<temp.getLength(); k++) {
 				for (int l=0; l< temp.getWidth(); l++) {
@@ -27,8 +26,10 @@ public class TestGrid {
 					
 				}
 			} 	
-			System.out.println("Grid\n" + grid.toString());
 		} 
+
+		System.out.println("Grid\n" + grid.toString());	
 	} 
+	
 
 }
