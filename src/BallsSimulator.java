@@ -18,6 +18,7 @@ public class BallsSimulator extends Balls implements Simulable
 
   }
 
+  }
 
 @Override
 public void next ()

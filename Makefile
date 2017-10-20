@@ -31,6 +31,9 @@ testBalls:
 
 testBallsSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
+	
+testGrid:
+	javac -d bin -sourcepath src src/TestGrid.java	
 
 # Execution:
 # on peut taper directement la ligne de commande :
@@ -45,8 +48,10 @@ exeBalls:
 
 
 exeBallsSimulator:
-		java -classpath bin:bin/gui.jar TestBallsSimulator
+	java -classpath bin:bin/gui.jar TestBallsSimulator
 
+exeGrid:
+	java -classpath bin TestGrid
 
 clean:
 	rm -rf bin/*.class
