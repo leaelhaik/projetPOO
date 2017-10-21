@@ -4,7 +4,7 @@ import java.awt.Color ;
 public class TestBallsSimulator
 {
   public static void main ( String[] args ) {
-  BallsSimulator b = new BallsSimulator(4);
+  BallsSimulator b = new BallsSimulator(10);
   b.gui.setSimulable ( b ) ;
 
 }
