@@ -5,6 +5,8 @@ import java.awt.Color;
 import gui.Oval;
 import java.util.Random;
 
+import balls.Balls;
+
 public class BallsSimulator extends Balls implements Simulable
 {
 

@@ -98,7 +98,13 @@ public int getWidth() {
 	return this.width;
 }
 
-
+public void reInit() {
+	for (int i=0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			this.cellMat[i][j]=new CellConway(i,j);
+		}
+	}
+}
 
 
 @Override

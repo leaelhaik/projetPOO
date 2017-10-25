@@ -146,7 +146,7 @@ public class Balls extends Point
 
 //----------------------------------------------------------------
 // Réinitialiser le tableau avec des valeurs aléatoires
-  void reInit()
+  public void reInit()
   {
        for(int i = 0;i<this.tab.length;i++)
       {
