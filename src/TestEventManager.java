@@ -1,5 +1,7 @@
 import java.util.*;
 
+import events.*;
+
 public class TestEventManager
 {
   public static void main ( String [] args ) throws InterruptedException

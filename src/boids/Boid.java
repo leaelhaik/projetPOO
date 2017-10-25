@@ -1,3 +1,4 @@
+package boids;
 import java.awt.Point;
 //CREER METHODE AJOUT POUR accelerationX ET velocityX
 public class Boid extends Point{

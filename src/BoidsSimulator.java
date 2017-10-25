@@ -1,5 +1,6 @@
 import gui.*;
 import java.awt.Color;
+import boids.Boids;
 
 public class BoidsSimulator extends Boids implements Simulable
 {

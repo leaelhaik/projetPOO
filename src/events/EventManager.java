@@ -1,3 +1,4 @@
+package events;
 import java.util.*;
 import java.lang.Boolean;
 
@@ -5,12 +6,12 @@ import java.lang.Boolean;
 
 public class EventManager extends Event implements Comparator<Event>
 {
-  public int date;
-  public int currentDate;
+  public long date;
+  public long currentDate;
   public List<Event> list;
 
 
-  public EventManager(int date)
+  public EventManager(long date)
   {
     super(date);
     this.currentDate = 0;
@@ -20,13 +21,9 @@ public class EventManager extends Event implements Comparator<Event>
   {
     System.out.println("lol");
   }
-  public int getDate()
-  {
-    return this.date;
-  }
+ 
 
-
-  public int getCurrenDate()
+  public long getCurrentDate()
   {
     return this.currentDate;
   }
@@ -41,7 +38,7 @@ public class EventManager extends Event implements Comparator<Event>
   {
     for(Event l: this.list)
     {
-      if (l.date >this.currentDate)
+      if (l.getDate() >this.currentDate)
       {
         return false;
       }
@@ -51,7 +48,7 @@ public class EventManager extends Event implements Comparator<Event>
 
   public int compare(Event e,Event e1)
   {
-  return (int)(e.date - e1.date);
+  return (int)(e.getDate() - e1.getDate());
   }
 
   public void addEvent(Event e)

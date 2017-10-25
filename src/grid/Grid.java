@@ -22,6 +22,17 @@ public Grid(int length, int width) {
 	}
 }
 
+public Grid(int length, int width, CellState cellState) {
+	this.length=length;
+	this.width=width;
+	this.cellMat= new Cell[length][width];
+	for (int i=0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			this.cellMat[i][j]=new Cell(i,j,cellState);
+		}
+	}
+}
+
 public Grid(Grid grid) {
 	this.length=grid.getLength();
 	this.width=grid.getWidth();

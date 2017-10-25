@@ -1,3 +1,7 @@
+package events;
+
+import java.awt.Event;
+import boids.Boids;
 
 public class MoveBoidsEvent extends Event
 {

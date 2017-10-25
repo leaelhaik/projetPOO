@@ -1,3 +1,4 @@
+package events;
 public class MessageEvent extends Event {
   private String message ;
 
