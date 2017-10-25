@@ -7,17 +7,9 @@ public class TestEventManager
 
     EventManager e = new EventManager(0);
 
-    for (int i=2;i <= 10;i+=2) {
-      e.addEvent(new MessageEvent(i,"[PING]"));
-    }
+    e.addEvent(new MessageEvent(1,"[PONG]"));
 
-      for(int i=3;i<= 9 ;i+=3){
-      e.addEvent(new MessageEvent(i,"[PONG]"));
-    }
-    for(Event l: e.list)
-    {
-      System.out.println(l.getDate() + ", ");
-    }
+    System.out.println(e.toString());
 /*
     Collections.sort(e.list, new EventManager(0));
 
@@ -27,18 +19,18 @@ public class TestEventManager
     }
 */
 
-    while(!e.isFinished())
+    while(e.currentDate < 21)
     {
       e.next();
     }
     e.restart();
-
+/*
     while(!e.isFinished())
     {
       e.next();
     }
-
-
+    System.out.println(e.toString());
+*/
 
 
 

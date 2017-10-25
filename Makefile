@@ -41,6 +41,8 @@ testGridnSimulator:
 testGrid:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGrid.java
 
+testEventManager:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin TestGUI
