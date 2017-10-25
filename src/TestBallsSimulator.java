@@ -1,10 +1,17 @@
 import gui.* ;
 import java.awt.Color ;
+import java.util.*;
+import simulators.BallsSimulator;
 
 public class TestBallsSimulator
 {
   public static void main ( String[] args ) {
-  BallsSimulator b = new BallsSimulator(10);
+  System.out.println("Combien de boules ?");
+  int n;
+  Scanner sc = new Scanner(System.in);
+  n = sc.nextInt();
+  if (n<0) {throw new IllegalArgumentException("Le nombre de boules ne peut pas être négatif");}
+  BallsSimulator b = new BallsSimulator(n);
   b.gui.setSimulable ( b ) ;
 
 }

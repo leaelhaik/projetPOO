@@ -2,7 +2,7 @@ package events;
 
 public abstract class Event {
 
-	private long date; 
+	protected long date; 
 	
 	public long getDate() {
 		return this.date;
@@ -10,6 +10,10 @@ public abstract class Event {
 	
 	public abstract void execute();
 		
+	public Event() {
+		this.date=0;
+	}
+	
 	public Event(long date) {
 		this.date=date;
 	}

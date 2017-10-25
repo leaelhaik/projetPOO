@@ -32,19 +32,14 @@ testBalls:
 testBallsSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
 
-testGrid:
-	javac -d bin -sourcepath src src/TestGrid.java
+testGridSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridSimulator.java
 
+testGridnSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridnSimulator.java
 
-testBoids:
-	javac -d bin -sourcepath src src/TestBoids.java
-
-testBoidsSimulator:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
-
-testEventManager:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
-
+testGridConway:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridConway.java
 
 # Execution:
 # on peut taper directement la ligne de commande :
@@ -61,8 +56,14 @@ exeBalls:
 exeBallsSimulator:
 	java -classpath bin:bin/gui.jar TestBallsSimulator
 
-exeGrid:
-	java -classpath bin TestGrid
+exeGridSimulator:
+	java -classpath bin:bin/gui.jar TestGridSimulator
+
+exeGridnSimulator:
+	java -classpath bin:bin/gui.jar TestGridnSimulator
+
+exeGridConway:
+	java -classpath bin:bin/gui.jar TestGridConway
 
 exeBoidsSimulator:
 	java -classpath bin:bin/gui.jar TestBoidsSimulator

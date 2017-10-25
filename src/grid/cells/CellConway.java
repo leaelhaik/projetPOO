@@ -3,38 +3,36 @@ import java.lang.Math;
 import java.awt.Point;
 import java.util.Random;
 
-public class Cell extends Point {
+public class CellConway extends Point {
 
-	private int cellState;
-	private int nbr_State;
+	private CellState cellState;
 
 
-	public int getCellState() {
+	public CellState getCellState() {
 		return this.cellState;
 	}
-	public int getnbr_State() {
-		return this.nbr_State;
-	}
 
-	public void setCellState(int cellState) {
+
+	public void setCellState(CellState cellState) {
 		this.cellState = cellState;
 	}
-
 
 
 	//Constructeur qui crée une cellule aux coordonnées x et y
-	public Cell(int x, int y,int nbr) {
+	public CellConway(int x, int y) {
 		this.setLocation(x, y);
-		 Random R = new Random();
-		this.cellState = R.nextInt(nbr);
-		this.nbr_State = nbr;
+		double i= Math.random();
+			if (i<0.5) {
+				this.cellState = CellState.DEAD;
+			} else {
+				this.cellState = CellState.ALIVE;
+			}
 
 	}
 
-	public Cell(int x, int y, int cellState,int nbr) {
+	public CellConway(int x, int y, CellState cellState) {
 		this.setLocation(x,y);
 		this.cellState = cellState;
-		this.nbr_State=nbr;
 	}
 
 

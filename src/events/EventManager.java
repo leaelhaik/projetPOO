@@ -17,6 +17,13 @@ public class EventManager extends Event implements Comparator<Event>
     this.currentDate = 0;
     this.list = new ArrayList<Event>();
   }
+  
+  public EventManager() {
+	  super();
+	  this.currentDate = 0;
+	  this.list = new ArrayList<Event>();
+  }
+  
   public void execute()
   {
     System.out.println("lol");

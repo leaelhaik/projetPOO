@@ -1,3 +1,5 @@
+package simulators;
+
 import gui.*;
 import java.awt.Color;
 import boids.Boids;

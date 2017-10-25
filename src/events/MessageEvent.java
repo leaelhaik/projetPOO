@@ -7,11 +7,8 @@ public class MessageEvent extends Event {
     super(date) ;
     this.message = message ;
   }
-  @Override
-  public int getDate()
-  {
-    return this.date;
-  }
+
+  
   @Override
   public void execute ()
   {
