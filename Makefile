@@ -37,9 +37,9 @@ testGridSimulator:
 
 testGridnSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridnSimulator.java
-	
+
 testGrid:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGrid.java	
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGrid.java
 
 # Execution:
 # on peut taper directement la ligne de commande :
@@ -64,6 +64,16 @@ exeGridnSimulator:
 
 exeGrid:
 	java -classpath bin:bin/gui.jar TestGrid
+
+exeBoidsSimulator:
+	java -classpath bin:bin/gui.jar TestBoidsSimulator
+
+
+exeEventManager:
+	java -classpath bin:bin/gui.jar TestEventManager
+
+exeBoids:
+	java -classpath bin TestBoids
 
 clean:
 	rm -rf bin/*.class
