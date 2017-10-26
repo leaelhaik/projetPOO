@@ -39,6 +39,7 @@ public class EventManager extends Event implements Comparator<Event>
         this.list.get(i).execute();
         (this.list.get(i)).date ++;
         this.addEvent(this.list.get(i));
+
       }
     }
   }
@@ -56,8 +57,12 @@ public class EventManager extends Event implements Comparator<Event>
   public void restart()
   {
     this.currentDate = 0;
+    for(int i  = this.list.size()-1; i>= 1; i--)
+    {
+      this.list.remove(i);
+    }
+    (this.list.get(0)).date = 0;
   }
-
 
   public void sort()
   {
@@ -85,7 +90,6 @@ public class EventManager extends Event implements Comparator<Event>
 
   public void addEvent(Event e)
   {
-    e.date ++;
     list.add(e);
   }
 
@@ -93,14 +97,11 @@ public class EventManager extends Event implements Comparator<Event>
 
   public void next()
   {
-
     System.out.println("Next... currentDate:" + this.currentDate + ",\n");
     this.execute();
     currentDate++;
+
   }
-
-
-
 
 
 }

@@ -79,11 +79,11 @@ public class Boids extends Boid{
       {
         if (j !=i)
         {
-          if (Math.abs(this.tab[i].x - this.tab[j].x) < 50 ) //Si la distance est trop petite
+          if (Math.abs(this.tab[i].x - this.tab[j].x) < 10 ) //Si la distance est trop petite
           {
             cX += -(this.tab[i].x - this.tab[j].x);//On décrémente cX de la distance trop courte
           }
-          if (Math.abs(this.tab[i].y - this.tab[j].y) < 50 )
+          if (Math.abs(this.tab[i].y - this.tab[j].y) < 10 )
           {
             cY += -(this.tab[i].y - this.tab[j].y);//On décrémente cX de la distance trop courte
           }

@@ -17,8 +17,6 @@ public class MoveBoidsEvent extends Event
   public void execute()
   {
     this.boids.moveBoids();
-    System.out.println( this.boids.toString());
-
   }
 
 
