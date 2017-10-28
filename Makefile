@@ -25,6 +25,9 @@ all: testBallsSimulator testGridConwaySimulator
 
 testBoids:
 	javac -d bin -sourcepath src src/TestBoids.java
+
+testVacants:
+	javac -d bin -sourcepath src src/TestVacants.java
 	
 testBoidsSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
@@ -38,6 +41,8 @@ testGridConwaySimulator:
 testGridnSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridnSimulator.java
 
+testSchellingSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestSchellingSimulator.java
 
 # Execution:
 # on peut taper directement la ligne de commande :
@@ -55,6 +60,9 @@ exeGridConwaySimulator:
 exeGridnSimulator:
 	java -classpath bin:bin/gui.jar TestGridnSimulator
 
+exeSchellingSimulator:
+	java -classpath bin:bin/gui.jar TestSchellingSimulator
+
 exeBoidsSimulator:
 	java -classpath bin:bin/gui.jar TestBoidsSimulator
 
@@ -63,6 +71,8 @@ exeEventManager:
 
 exeBoids:
 	java -classpath bin TestBoids
+exeVacants:
+	java -classpath bin TestVacants
 
 clean:
 	rm -rf bin/*.class

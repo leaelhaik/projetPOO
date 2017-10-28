@@ -1,7 +1,5 @@
 package grid;
 
-
-import gui.* ;
 import java.awt.Color ;
 import grid.cells.Cell;
 import grid.cells.CellState;
@@ -23,7 +21,7 @@ public Grid(int length, int width,int nbr) {
 	for (int i=0; i < length; i++) {
 		for (int j = 0; j < width; j++) {
 			this.cellMat[i][j]=new Cell(i,j,nbr);
-			
+
 		}
 	}
 
@@ -46,11 +44,23 @@ public Grid(Grid grid) {
 	}
 }
 
-
 public Cell getCell(int i, int j) {
 	return this.cellMat[i][j];
 }
 
+public void GridMoinsZero()
+{
+	for (int i=0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (this.getCell(i,j).getCellState()==0)
+			{
+				if(i%this.n_State ==1){
+					this.getCell(i,j).setCellState((i+j)%(this.n_State));
+				}
+			}
+		}
+	}
+}
 public Cell[] getNeighbors(int i, int j) {
 	Cell[] neighbors = {getCell(Math.floorMod(i-1,this.length),j),
 			getCell(Math.floorMod(i+1,this.length),j),
@@ -72,6 +82,15 @@ public int countStateK(int i, int j,int k) { //compte les morts
 		}
 	}
 	return count;
+}
+
+public void reInit() {
+	for (int i=0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			this.cellMat[i][j]=new Cell(i,j,this.n_State);
+		}
+	}
+	this.GridMoinsZero();
 }
 
 public int countStateK_1(int i, int j,int k) { // compte les vivants
@@ -107,7 +126,26 @@ public int getWidth() {
 	return this.width;
 }
 
-
+public String Couleur(int e)
+{
+	if (e==0) {return "#FEFEFE";}
+	String c;
+	if (e<6)
+	{
+		c = "#" + (String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0";
+		return c;
+	}
+	if (e<10)
+	{
+		 c = "#" + (String.valueOf(e)) + "2" +(String.valueOf(e)) + "2" +(String.valueOf(e)) + "2";
+		return c;
+	}
+	else
+	{
+		c = "#" + (String.valueOf(3*e)) +"DF"  +(String.valueOf(3*e)) ;
+	    return c;
+	}
+}
 
 
 @Override

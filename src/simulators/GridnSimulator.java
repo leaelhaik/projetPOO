@@ -16,27 +16,9 @@ public class GridnSimulator extends Grid implements Simulable
      }
 
 
-     private String Couleur(int e)
-     {
-          if (e==0) {return "#FEFEFE";}
-          String c;
-          if (e<6)
-          {
-               c = "#" + (String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0";
-               return c;
-          }
-          if (e<10)
-          {
-                c = "#" + (String.valueOf(e)) + "0" +(String.valueOf(e)) + "0" +(String.valueOf(e)) + "0";
-               return c;
-          }
-          else
-          {
-               c = "#" + (String.valueOf(3*e)) +"DF"  +(String.valueOf(3*e)) ;
-              return c;
-          }
 
-     }
+
+     
      @Override
      public void next()
      {
@@ -62,6 +44,7 @@ public class GridnSimulator extends Grid implements Simulable
      @Override
      public void restart()
      {
+          this.reInit();
           this.gui.reset();
      }
 }
