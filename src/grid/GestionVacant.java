@@ -13,7 +13,6 @@ public class GestionVacant extends Grid
           super(length,width,nbr_color);
           this.vacants= new LinkedList<Cell>();
           this.GridMoinsZero();
-          Iterator<Cell> it = this.vacants.iterator();
           for (int i=0; i < length; i++) {
      		for (int j = 0; j < width; j++){
                     if (this.getCell(i,j).getCellState()==0){
@@ -28,6 +27,21 @@ public class GestionVacant extends Grid
      public LinkedList<Cell> getVacants()
      {
           return this.vacants;
+     }
+
+     public void reInitVac()
+     {
+          this.reInitgrid();
+          this.GridMoinsZero();
+          LinkedList<Cell> newVacants = new LinkedList<Cell>();
+          for (int i=0; i < this.getLength(); i++) {
+     		for (int j = 0; j < this.getWidth(); j++){
+                    if (this.getCell(i,j).getCellState()==0){
+                         newVacants.add(this.getCell(i,j));
+                    }
+               }
+          }
+          this.vacants = newVacants;
      }
 
 

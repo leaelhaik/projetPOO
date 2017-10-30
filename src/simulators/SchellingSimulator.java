@@ -51,18 +51,25 @@ public class SchellingSimulator extends GestionVacant implements Simulable
 
                                           int k1 =(int)this.getCellVacant(nouveau_logement-1).getX();
                                           int l1 = (int)this.getCellVacant(nouveau_logement-1).getY();
-                                          this.setStateCell(k1,l1,etat);
                                           this.removeCell(this.getCellVacant(nouveau_logement-1));
+                                          this.setStateCell(k1,l1,etat);
                                           this.setStateCell(k,l,0);
                                           this.ajoutCell(this.getCell(k,l));
-
+                                          if (this.Est_Vacante(k1,l1))
+                                          {
+                                               System.out.println(k1+"/"+l1);
+                                          }
+                                          if (!this.Est_Vacante(k,l))
+                                          {
+                                               System.out.println("Ah non");
+                                          }
 
                                           this.gui.addGraphicalElement( new Rectangle(30*k1+30,30*l1+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30));
-                                         // this.gui.addGraphicalElement( new Rectangle(30*k+30,30*l+30,Color.decode("#FFFFFF"),Color.decode("#FFFFFF"),30) );
-                                          etat=0;
-                                     }
+                                          //this.gui.addGraphicalElement( new Rectangle(30*k+30,30*l+30,Color.decode("#FFFFFF"),Color.decode("#FFFFFF"),30) );
 
+                                     }
                               }
+                              etat =this.getCell(k, l).getCellState();
                               this.gui.addGraphicalElement( new Rectangle(30*k+30,30*l+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30));
                          }
                }
@@ -73,7 +80,7 @@ public class SchellingSimulator extends GestionVacant implements Simulable
 
      @Override
      public void restart(){
-          this.reInit();
+          this.reInitVac();
           this.gui.reset();
           for (int k=0; k<this.getLength(); k++)
           {

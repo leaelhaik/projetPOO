@@ -84,13 +84,12 @@ public int countStateK(int i, int j,int k) { //compte les morts
 	return count;
 }
 
-public void reInit() {
+public void reInitgrid() {
 	for (int i=0; i < length; i++) {
 		for (int j = 0; j < width; j++) {
 			this.cellMat[i][j]=new Cell(i,j,this.n_State);
 		}
 	}
-	this.GridMoinsZero();
 }
 
 public int countStateK_1(int i, int j,int k) { // compte les vivants
