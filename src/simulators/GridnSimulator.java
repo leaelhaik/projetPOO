@@ -18,7 +18,7 @@ public class GridnSimulator extends Grid implements Simulable
 
 
 
-     
+
      @Override
      public void next()
      {
@@ -44,7 +44,16 @@ public class GridnSimulator extends Grid implements Simulable
      @Override
      public void restart()
      {
-          this.reInit();
+          this.reInitgrid();
           this.gui.reset();
+          int etat;
+          for (int k=0; k<this.getLength(); k++)
+          {
+               for (int l=0; l< this.getWidth(); l++) {
+                    etat =this.getCell(k, l).getCellState();
+                    this.gui.addGraphicalElement( new Rectangle(30*k+30,30*l+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30) );
+               }
+          }
+
      }
 }
