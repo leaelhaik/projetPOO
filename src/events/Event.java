@@ -1,20 +1,20 @@
 package events;
 
-public abstract class Event {
+public abstract class Event
+{
+  public int date;
 
-	protected long date; 
-	
-	public long getDate() {
-		return this.date;
-	}
-	
-	public abstract void execute();
-		
-	public Event() {
-		this.date=0;
-	}
-	
-	public Event(long date) {
-		this.date=date;
-	}
+
+  public Event(int date)
+  {
+    this.date = date;
+  }
+
+  public abstract int getDate();
+
+  public abstract void execute();
+
+
+
+
 }

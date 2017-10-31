@@ -1,29 +1,49 @@
 import java.util.*;
 
-import events.*;
+import events.EventManager;
+import events.MessageEvent;
 
 public class TestEventManager
 {
   public static void main ( String [] args ) throws InterruptedException
   {
 
-    EventManager manager = new EventManager();
+    EventManager e = new EventManager(0);
 
-    for (int i=2;i <= 10;i+=2) {
-      manager.addEvent(new MessageEvent(i,"[PING]"));
-    }
+    e.addEvent(new MessageEvent(1,"[PONG]"));
 
-      for(int i=3;i<= 9 ;i+=3){
-      manager.addEvent(new MessageEvent(i,"[PONG]"));
-    }
+    System.out.println(e.toString());
+/*
+    Collections.sort(e.list, new EventManager(0));
 
-      
-
-    while(!manager.isFinished())
+    for(Event l: e.list)
     {
-      manager.next();
-      Thread.sleep(1000);
+      System.out.println(l.getDate() + ", ");
     }
+*/
 
+    while(e.currentDate < 21)
+    {
+      e.next();
+    }
+    e.restart();
+/*
+    while(!e.isFinished())
+    {
+      e.next();
+    }
+    System.out.println(e.toString());
+*/
+
+
+
+
+
+/*
+    for(Event l: e.list)
+    {
+      System.out.println(l.getDate() + ", ");
+    }
+*/
   }
 }

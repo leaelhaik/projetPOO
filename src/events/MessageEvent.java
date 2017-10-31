@@ -15,4 +15,11 @@ public class MessageEvent extends Event {
     System.out.println(this.getDate() + this.message);
   }
 
+
+@Override
+public int getDate() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 }
