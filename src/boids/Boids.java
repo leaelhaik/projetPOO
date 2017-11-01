@@ -1,4 +1,4 @@
-import java.awt.Point;
+package boids;
 import java.util.Random;
 import java.lang.Math;
 

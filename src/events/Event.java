@@ -1,4 +1,4 @@
-import java.util.*;
+package events;
 
 public abstract class Event
 {

@@ -1,3 +1,4 @@
+import boids.Boids;
 
 public class TestBoids{
   public static void main ( String[] args )

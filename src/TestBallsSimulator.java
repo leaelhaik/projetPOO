@@ -1,6 +1,7 @@
 import gui.* ;
 import java.awt.Color ;
 import java.util.*;
+import simulators.BallsSimulator;
 
 public class TestBallsSimulator
 {

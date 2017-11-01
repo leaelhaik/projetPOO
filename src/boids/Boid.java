@@ -1,3 +1,4 @@
+package boids;
 import java.awt.Point;
 //CREER METHODE AJOUT POUR accelerationX ET velocityX
 public class Boid extends Point{
@@ -27,7 +28,15 @@ public class Boid extends Point{
     this.accelerationY = 0;
   //  this.orientation = 0;
   }
-
+  
+  public Boid(int x, int y, double vx, double vy, double ax, double ay)
+  {
+	  super(x,y);
+	  this.velocityX = vx;
+	  this.velocityY = vy;
+	  this.accelerationX = ax;
+	  this.accelerationY = ay;
+  }
 
 
   public double getVelocityX()

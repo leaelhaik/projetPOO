@@ -1,3 +1,4 @@
+package simulators;
 
 import gui.*;
 import java.awt.Color;

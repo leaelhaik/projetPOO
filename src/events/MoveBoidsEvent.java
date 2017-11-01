@@ -1,10 +1,14 @@
+package events;
+
+import events.Event;
+import boids.BoidsNew;
 
 public class MoveBoidsEvent extends Event
 {
 
-  public Boids boids;
+  public BoidsNew boids;
 
-  public MoveBoidsEvent(int date, Boids boids)
+  public MoveBoidsEvent(int date, BoidsNew boids)
   {
     super(date);
     this.boids = boids;

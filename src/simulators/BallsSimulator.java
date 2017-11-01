@@ -1,7 +1,11 @@
+package simulators;
+
 import gui.*;
 import java.awt.Color;
 import gui.Oval;
 import java.util.Random;
+
+import balls.Balls;
 
 public class BallsSimulator extends Balls implements Simulable
 {
@@ -20,6 +24,7 @@ public class BallsSimulator extends Balls implements Simulable
 
   }
 
+
 //---------------------------------------------------------
 // Pour avoir des boules de différentes couleur :
 // On génère une chaine de caractère en fonction de la valeur i qui est l'indice de la boule
@@ -36,7 +41,7 @@ public void next ()
   this.gui.reset(); // On enlève tous les points sur l'écran
   for(int i=0;i<this.getlength();i++)
   {
-    this.trans(1,1); // On modifie les coordonées des points de Balls
+    this.trans(1,1 ); // On modifie les coordonées des points de Balls
     this.gui.addGraphicalElement( new Oval(this.gettabi(i).x, this.gettabi(i).y,Color.decode(Couleur(i)),Color.decode(Couleur(i)),50) );//On affiche les nouveaux points
   }
 
@@ -47,5 +52,11 @@ public void restart ()
 {
   this.reInit(); // On réinitialise les points
   this.gui.reset(); // On réinitialise l'écran
+  this.gui.reset(); // On enlève tous les points sur l'écran
+  for(int i=0;i<this.getlength();i++)
+  {
+
+    this.gui.addGraphicalElement( new Oval(this.gettabi(i).x, this.gettabi(i).y,Color.decode(Couleur(i)),Color.decode(Couleur(i)),50) );
+  }
 }
 }

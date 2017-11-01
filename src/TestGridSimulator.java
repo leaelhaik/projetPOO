@@ -1,4 +1,6 @@
 import gui.* ;
+import simulators.GridSimulator;
+
 import java.awt.Color ;
 import grid.*;
 

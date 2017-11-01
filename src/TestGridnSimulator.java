@@ -2,6 +2,7 @@ import gui.* ;
 import java.awt.Color ;
 import grid.*;
 import java.util.*;
+import simulators.GridnSimulator;
 
 
 public class TestGridnSimulator

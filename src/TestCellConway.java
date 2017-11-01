@@ -1,9 +1,9 @@
-import grid.cells.Cell;
+import grid.cells.CellConway;
 
-public class TestCell {
+public class TestCellConway {
 
 	public static void main(String[] args) {
-		Cell cell = new Cell(3,2);
+		CellConway cell = new CellConway(3,2);
 		System.out.println(cell.toString());
 		System.out.println(cell.getCellState().toString());
 	}

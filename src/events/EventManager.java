@@ -1,5 +1,5 @@
+package events;
 import java.util.*;
-import java.lang.Boolean;
 
 
 
@@ -36,8 +36,10 @@ public class EventManager extends Event implements Comparator<Event>
     {
       if ( (this.list.get(i)).date == currentDate)
       {
+        System.out.println((this.list.get(i)).date + "\n");
         this.list.get(i).execute();
-        (this.list.get(i)).date ++;
+        System.out.println((this.list.get(i)).date + "\n");
+        System.out.println((this.list.get(i)).date + "\n");
         this.addEvent(this.list.get(i));
 
       }
@@ -71,6 +73,7 @@ public class EventManager extends Event implements Comparator<Event>
 
 
 
+
   public boolean isFinished()
   {
     for(Event l: this.list)
@@ -90,6 +93,7 @@ public class EventManager extends Event implements Comparator<Event>
 
   public void addEvent(Event e)
   {
+    e.date ++;
     list.add(e);
   }
 
@@ -102,6 +106,8 @@ public class EventManager extends Event implements Comparator<Event>
     currentDate++;
 
   }
+
+
 
 
 }
