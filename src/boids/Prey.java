@@ -79,13 +79,25 @@ public class Prey extends BoidNew {
 		this.ruleHerd(boidsHerds);
 		this.Rule2(boidsHerds);
 		this.Rule3(boidsHerds);
+		this.flee(boidsHerds);
 		this.boundPosition(1200,800,0,0);
 		this.update();
 	}
 
 	@Override
 	public void flee(BoidsNew boidsHerds) {
-		// TODO Auto-generated method stub
+		int cX=0;
+		int cY=0;
+		for( int j = 0; (j < boidsHerds.PredatorsTab.length); j++)
+		{
+			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 200)
+			 {
+				 this.setVelocityX(-this.getVelocityX());
+				 this.setVelocityY(-this.getVelocityY());
+				 this.setAccelerationX(-this.getAccelerationX());
+				 this.setAccelerationY(-this.getAccelerationY());
+			 }
+		}
 
 	}
 

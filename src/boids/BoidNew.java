@@ -51,7 +51,10 @@ public abstract class BoidNew extends Point{
 
   }
 
-
+  public double distanceFrom(BoidNew boid)
+  {
+    return Math.sqrt(Math.pow(this.x-boid.x,2)+Math.pow(this.y-boid.y,2));
+  }
 
 
   public void update() {
@@ -60,8 +63,8 @@ public abstract class BoidNew extends Point{
       this.velocityX+=this.accelerationX;
       this.velocityY+=this.accelerationY;
       this.limitVelocity(1500,1500);
-      this.x += this.velocityX/10;
-      this.y += this.velocityY/10;
+      this.x += this.velocityX/30;
+      this.y += this.velocityY/30;
   }
 
   public void resetAcceleration() //Remet l'acceleration des Boids à 0
