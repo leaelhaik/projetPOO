@@ -38,6 +38,7 @@ public class Predator extends BoidNew {
 	public void move(BoidsNew BoidsHerds) {
 		resetAcceleration();
 		ruleDistance(BoidsHerds);
+		this.boundPosition(1200,800,0,0);
 		update();
 	}
 

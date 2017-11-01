@@ -16,7 +16,6 @@ public class Boid extends Point{
     this.velocityY = 0;
     this.accelerationX = 0;
     this.accelerationY = 0;
-  //  this.orientation = 0;
   }
 
   public Boid()
@@ -26,9 +25,8 @@ public class Boid extends Point{
     this.velocityY = 0;
     this.accelerationX = 0;
     this.accelerationY = 0;
-  //  this.orientation = 0;
   }
-  
+
   public Boid(int x, int y, double vx, double vy, double ax, double ay)
   {
 	  super(x,y);

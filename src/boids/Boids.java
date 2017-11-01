@@ -128,6 +128,38 @@ public class Boids extends Boid{
       }
     }
   }
+
+
+  public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin)
+  {
+
+    for(int i=0; i<this.tab.length;i++)
+    {
+      if(this.tab[i].x < Xmin)
+      {
+        this.tab[i].addAccelerationX(1200);
+        this.tab[i].addVelocityX(200);
+
+      }
+      if(this.tab[i].y < Ymin)
+      {
+        this.tab[i].addAccelerationY(700);
+        this.tab[i].addVelocityY(140);
+
+      }
+      if(this.tab[i].x > Xmax )
+      {
+        this.tab[i].addAccelerationX(-1200);
+        this.tab[i].addVelocityX(-200);
+      }
+      if(this.tab[i].y > Ymax )
+      {
+        this.tab[i].addAccelerationY(-700);
+        this.tab[i].addVelocityY(-140);
+      }
+    }
+  }
+
   public void resetAcceleration() //Remet l'acceleration des Boids à 0
   {
     for (int i=0;i<this.tab.length;i++)
