@@ -1,5 +1,4 @@
 package grid.cells;
-import java.lang.Math;
 import java.awt.Point;
 import java.util.Random;
 
