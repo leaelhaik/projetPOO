@@ -28,7 +28,7 @@ public class GestionVacant extends Grid
      {
           return this.vacants;
      }
-
+//Reinitialise la liste des vacants
      public void reInitVac()
      {
           this.reInitgrid();
@@ -56,6 +56,8 @@ public class GestionVacant extends Grid
           this.vacants.add(c);
      }
 
+//Renvoit la cellule n°i de la liste
+
      public Cell getCellVacant(int i)
      {
           if (this.lengthVacants()<i)
@@ -71,6 +73,8 @@ public class GestionVacant extends Grid
 
           return it.next();
      }
+
+//Affiche tous les vacants ( pour les tests )
      public void printVacant()
      {
           Cell e;

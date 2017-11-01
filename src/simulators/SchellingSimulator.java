@@ -42,30 +42,33 @@ public class SchellingSimulator extends GestionVacant implements Simulable
                               if (etat !=0)
                               {
 
-
+                                   // La condition pour le déménagement : le nombre de voisins de même couleurs et le
+                                   // nombre de zero soit inférieur au seuil
 						       if (this.countVoisinMemeCouleur(k, l,etat) < 8-this.seuil)
                                      {
                                           Random logement = new Random();
 
                                           int nouveau_logement =logement.nextInt(this.lengthVacants());
 
-                                          int k1 =(int)this.getCellVacant(nouveau_logement-1).getX();
-                                          int l1 = (int)this.getCellVacant(nouveau_logement-1).getY();
+                                          // Choix aléatoire du nouveau logement
+
+                                          int X_NouvelleCell =(int)this.getCellVacant(nouveau_logement-1).getX();
+                                          int Y_NouvelleCell = (int)this.getCellVacant(nouveau_logement-1).getY();
                                           this.removeCell(this.getCellVacant(nouveau_logement-1));
-                                          this.setStateCell(k1,l1,etat);
+                                          this.setStateCell(X_NouvelleCell,Y_NouvelleCell,etat);
                                           this.setStateCell(k,l,0);
                                           this.ajoutCell(this.getCell(k,l));
-                                          if (this.Est_Vacante(k1,l1))
+                                          if (this.Est_Vacante(X_NouvelleCell,Y_NouvelleCell))
                                           {
-                                               System.out.println(k1+"/"+l1);
+                                               System.out.println(X_NouvelleCell+"/"+Y_NouvelleCell);
                                           }
                                           if (!this.Est_Vacante(k,l))
                                           {
                                                System.out.println("Ah non");
                                           }
 
-                                          this.gui.addGraphicalElement( new Rectangle(30*k1+30,30*l1+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30));
-                                          //this.gui.addGraphicalElement( new Rectangle(30*k+30,30*l+30,Color.decode("#FFFFFF"),Color.decode("#FFFFFF"),30) );
+                                          this.gui.addGraphicalElement( new Rectangle(30*X_NouvelleCell+30,30*Y_NouvelleCell+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30));
+                                          
 
                                      }
                               }

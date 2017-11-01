@@ -41,7 +41,7 @@ public void next ()
   this.gui.reset(); // On enlève tous les points sur l'écran
   for(int i=0;i<this.getlength();i++)
   {
-    this.trans(1,1); // On modifie les coordonées des points de Balls
+    this.trans(1,1 ); // On modifie les coordonées des points de Balls
     this.gui.addGraphicalElement( new Oval(this.gettabi(i).x, this.gettabi(i).y,Color.decode(Couleur(i)),Color.decode(Couleur(i)),50) );//On affiche les nouveaux points
   }
 
@@ -52,5 +52,11 @@ public void restart ()
 {
   this.reInit(); // On réinitialise les points
   this.gui.reset(); // On réinitialise l'écran
+  this.gui.reset(); // On enlève tous les points sur l'écran
+  for(int i=0;i<this.getlength();i++)
+  {
+
+    this.gui.addGraphicalElement( new Oval(this.gettabi(i).x, this.gettabi(i).y,Color.decode(Couleur(i)),Color.decode(Couleur(i)),50) );
+  }
 }
 }

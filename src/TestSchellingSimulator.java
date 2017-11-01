@@ -13,7 +13,11 @@ public class TestSchellingSimulator
   Scanner sc = new Scanner(System.in);
   n = sc.nextInt();
   if (n<0) {throw new IllegalArgumentException("Le nombre de couleurs ne peut pas être négatif");}
-  SchellingSimulator g = new SchellingSimulator(10,10,n,3);
+  int K;
+  System.out.println("Seuil K ?");
+  K = sc.nextInt();
+  if (K<0) {throw new IllegalArgumentException("Le seuil ne peut pas être négatif");}
+  SchellingSimulator g = new SchellingSimulator(20,20,n,K);
   g.gui.setSimulable(g) ;
 
 }
