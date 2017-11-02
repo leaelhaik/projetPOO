@@ -46,20 +46,19 @@ public class Predator extends BoidNew {
 	@Override
 	public void flee(BoidsNew BbidsHerds) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void hunt(BoidsNew boidsHerds) {
 		for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
 		{
-			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 200)
+			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 100)
 			 {
 				 this.setOrientation(boidsHerds.PreysTab[j].getOrientation());
-				 System.out.println("orientation fixée à" + this.getOrientation() + " pour la proie " + j +"\n");
-				 this.addVelocityX(50);
-				 this.addVelocityY(50);
-				 this.addAccelerationX(10);
+				 this.setVelocityX(-this.getVelocityX()-75);
+				 this.setVelocityY(-this.getVelocityY()-75);
+				 this.setAccelerationX(-this.getAccelerationX()-15);
+				 this.setAccelerationY(-this.getAccelerationY()-15);
 				 this.addAccelerationY(10);
 			 }
 		}

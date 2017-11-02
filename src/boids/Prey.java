@@ -97,6 +97,7 @@ public class Prey extends BoidNew {
 		{
 			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 100)
 			 {
+				 this.setOrientation(boidsHerds.PredatorsTab[j].getOrientation());
 				 this.setVelocityX(-this.getVelocityX()-75);
 				 this.setVelocityY(-this.getVelocityY()-75);
 				 this.setAccelerationX(-this.getAccelerationX()-15);
