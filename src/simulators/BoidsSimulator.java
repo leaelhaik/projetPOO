@@ -8,7 +8,8 @@ public class BoidsSimulator extends BoidsNew implements Simulable
 {
 
   EventManager e;
-  MoveBoidsEvent m;
+  MovePreys m;
+  MovePredators n;
   public GUISimulator gui;
 
   public BoidsSimulator(int nbPredators, int nbPreys)
@@ -16,8 +17,10 @@ public class BoidsSimulator extends BoidsNew implements Simulable
     super(nbPredators,nbPreys);
     this.gui =  new GUISimulator (1500 , 1000 , Color . BLACK ) ;
     this.e = new EventManager(0);
-    this.m = new MoveBoidsEvent(0,this);
+    this.m = new MovePreys(0,this);
+    this.n = new MovePredators(0,this);
     e.addEvent(m);
+    e.addEvent(n);
 
   }
 

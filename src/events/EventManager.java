@@ -36,12 +36,20 @@ public class EventManager extends Event implements Comparator<Event>
     {
       if ( (this.list.get(i)).date == currentDate)
       {
-        System.out.println((this.list.get(i)).date + "\n");
-        this.list.get(i).execute();
-        System.out.println((this.list.get(i)).date + "\n");
-        System.out.println((this.list.get(i)).date + "\n");
-        this.addEvent(this.list.get(i));
-
+        if(this.list.get(i) instanceof MovePreys)
+                {
+                  this.list.get(i).execute();
+                  System.out.println("BoidsPrey  s'est execute");
+                  (this.list.get(i)).date ++;
+                  this.addEvent(this.list.get(i));
+                }
+                if(this.list.get(i) instanceof MovePredators)
+                {
+                  this.list.get(i).execute();
+                  System.out.println("BoidsPredator s'est execute");
+                  (this.list.get(i)).date +=2;
+                  this.addEvent(this.list.get(i));
+                }
       }
     }
   }
@@ -93,7 +101,6 @@ public class EventManager extends Event implements Comparator<Event>
 
   public void addEvent(Event e)
   {
-    e.date ++;
     list.add(e);
   }
 

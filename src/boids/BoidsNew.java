@@ -46,6 +46,22 @@ public class BoidsNew {
 
 
 
+	public void movePredators()//methode qui fait bouger les predateurs seulement
+	{
+		for(int i =0; i< this.PredatorsTab.length ; i++)
+		{
+			this.PredatorsTab[i].move(this);
+		}
+
+	}
+	public void movePreys()//methode qui fait bouger les proies seulement
+	{
+		for(int i=0;i<this.PreysTab.length;i++)
+		{
+			this.PreysTab[i].move(this);
+		}
+	}
+
 	public void moveBoids()
 	{
 		for(int i =0; i< this.PredatorsTab.length ; i++)
@@ -58,7 +74,7 @@ public class BoidsNew {
 		}
 	}
 
-
+	
 	public void reInitBoids() //Réinitialise les valeurs de attributs des Boid
 	{
  		for(int i = 0;i< this.PredatorsTab.length;i++)
