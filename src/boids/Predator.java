@@ -39,6 +39,7 @@ public class Predator extends BoidNew {
 		resetAcceleration();
 		ruleDistance(boidsHerds);
 		this.boundPosition(1200,800,0,0);
+		this.hunt(boidsHerds);
 		update();
 	}
 
@@ -55,6 +56,7 @@ public class Predator extends BoidNew {
 			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 200)
 			 {
 				 this.setOrientation(boidsHerds.PreysTab[j].getOrientation());
+				 System.out.println("orientation fixée à" + this.getOrientation() + " pour la proie " + j +"\n");
 				 this.addVelocityX(50);
 				 this.addVelocityY(50);
 				 this.addAccelerationX(10);
