@@ -79,7 +79,7 @@ public class Prey extends BoidNew {
 		this.ruleDistanceMin(boidsHerds);
 		this.ruleVelocity(boidsHerds);
 		this.flee(boidsHerds);
-		this.boundPosition(1200,800,0,0);
+		this.boundPosition(1500,1200,0,0);
 		this.update();
 	}
 
