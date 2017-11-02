@@ -66,7 +66,7 @@ public class Prey extends BoidNew {
 		         }
 		       }
 		       this.addAccelerationX(cX/(boidsHerds.PreysTab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
-		       this.addAccelerationX(cY/(boidsHerds.PreysTab.length-1));
+		       this.addAccelerationY(cY/(boidsHerds.PreysTab.length-1));
 		   }
 
 

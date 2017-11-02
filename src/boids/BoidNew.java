@@ -62,9 +62,9 @@ public abstract class BoidNew extends Point{
       this.accelerationY=this.accelerationY/(float)4.0;
       this.velocityX+=this.accelerationX;
       this.velocityY+=this.accelerationY;
-      this.limitVelocity(1500,1500);
-      this.x += this.velocityX/30;
-      this.y += this.velocityY/30;
+      this.limitVelocity(1400,1400);
+      this.x += (float)this.velocityX/(float)10;
+      this.y += (float)this.velocityY/(float)10;
   }
 
   public void resetAcceleration() //Remet l'acceleration des Boids à 0
@@ -94,25 +94,23 @@ public abstract class BoidNew extends Point{
 
       if(this.x < Xmin)
       {
-        this.addAccelerationX(4000);
-        this.addVelocityX(200);
-
+        this.addAccelerationX(5000);
+      //  this.addVelocityX(200);
       }
       if(this.y < Ymin)
       {
-        this.addAccelerationY(4000);
-        this.addVelocityY(200);
-
+        this.addAccelerationY(5000);
+      //  this.addVelocityX(140);
       }
       if(this.x > Xmax )
       {
-        this.addAccelerationX(-4000);
-        this.addVelocityX(-200);
+        this.addAccelerationX(-5000);
+      //  this.addVelocityX(-200);
       }
       if(this.y > Ymax )
       {
-        this.addAccelerationY(-4000);
-        this.addVelocityY(-200);
+        this.addAccelerationY(-5000);
+      //  this.addVelocityX(-140);
       }
   }
 
