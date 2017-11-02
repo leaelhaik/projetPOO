@@ -27,14 +27,14 @@ public class Prey extends BoidNew {
 
 	  }
 
-		public void Rule2(BoidsNew boidsHerds) //Garder une distance minimale séparant les Boid
-	  {
-
-	      int cX = 0;
-	      int cY = 0;
-	      for( int j = 0; (j < boidsHerds.PreysTab.length) ; j++)
-	      {
-	        if (this != boidsHerds.PreysTab[j])
+	
+	public void ruleDistanceMin(BoidsNew boidsHerds) //Garder une distance minimale séparant les Boid
+	{	
+		int cX = 0;
+		int cY = 0;
+		for( int j = 0; (j < boidsHerds.PreysTab.length) ; j++)
+		{
+			if (this != boidsHerds.PreysTab[j])
 	        {
 	          if (Math.abs(this.x - boidsHerds.PreysTab[j].x) < 10 ) //Si la distance est trop petite
 	          {
@@ -45,30 +45,29 @@ public class Prey extends BoidNew {
 	            cY += -(this.y - boidsHerds.PreysTab[j].y);//On décrémente cX de la distance trop courte
 	          }
 	        }
-	      }
-	      this.addAccelerationX(cX); //On retranche cette distance à l'accelerationX
-	      this.addAccelerationX(cY); //On retranche cette distance à l'accelerationX
-
-	   }
-
+		}
+		this.addAccelerationX(cX); //On retranche cette distance à l'accelerationX
+		this.addAccelerationX(cY); //On retranche cette distance à l'accelerationX
+	}
 
 
-		   public void Rule3(BoidsNew boidsHerds) //Les boids tendent à s'aligner en Vitesse
-		   {
-		       int cX = 0;
-		       int cY = 0;
-		       for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
-		       {
-		         if (this != boidsHerds.PreysTab[j])
-		         {
-		           cX += boidsHerds.PreysTab[j].getVelocityX(); // Contient la somme des vitesses en X
-		           cY += boidsHerds.PreysTab[j].getVelocityY(); // Contient la somme des vitesses en Y
-		         }
-		       }
-		       this.addAccelerationX(cX/(boidsHerds.PreysTab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
-		       this.addAccelerationX(cY/(boidsHerds.PreysTab.length-1));
-		   }
 
+	public void ruleVelocity(BoidsNew boidsHerds) //Les boids tendent à s'aligner en Vitesse
+	{
+		int cX = 0;
+		int cY = 0;
+		for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
+		{
+			if (this != boidsHerds.PreysTab[j])
+			{
+				cX += boidsHerds.PreysTab[j].getVelocityX(); // Contient la somme des vitesses en X
+				cY += boidsHerds.PreysTab[j].getVelocityY(); // Contient la somme des vitesses en Y
+			}
+		}
+		this.addAccelerationX(cX/(boidsHerds.PreysTab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
+		this.addAccelerationX(cY/(boidsHerds.PreysTab.length-1));
+	}
+	
 
 
 
@@ -77,8 +76,8 @@ public class Prey extends BoidNew {
 	public void move(BoidsNew boidsHerds) {
 		System.out.println(this.getAccelerationX());
 		this.ruleHerd(boidsHerds);
-		this.Rule2(boidsHerds);
-		this.Rule3(boidsHerds);
+		this.ruleDistanceMin(boidsHerds);
+		this.ruleVelocity(boidsHerds);
 		this.flee(boidsHerds);
 		this.boundPosition(1200,800,0,0);
 		this.update();
