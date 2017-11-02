@@ -52,14 +52,14 @@ public class Predator extends BoidNew {
 	public void hunt(BoidsNew boidsHerds) {
 		for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
 		{
-			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 200)
+				double sumOrientation=0;
+				int counter=1;
+			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 100000)
 			 {
-				 this.setOrientation(boidsHerds.PreysTab[j].getOrientation());
-				 this.addVelocityX(50);
-				 this.addVelocityY(50);
-				 this.addAccelerationX(10);
-				 this.addAccelerationY(10);
+				sumOrientation += boidsHerds.PreysTab[j].getOrientation();
+				counter++;
 			 }
+			 this.setOrientation(sumOrientation/counter);
 		}
 
 	}

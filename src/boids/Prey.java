@@ -19,7 +19,7 @@ public class Prey extends BoidNew {
 	        {
 	          if (this != boidsHerds.PreysTab[j]) //On inclut pas le boid i dans le calcul du centre de masse
 	          {
-							if (this.distanceFrom(boidsHerds.PreysTab[j]) < 500)
+							if (this.distanceFrom(boidsHerds.PreysTab[j]) < 30000)
 							{
 			          cX += boidsHerds.PreysTab[j].x;
 			          cY += boidsHerds.PreysTab[j].y;
@@ -32,9 +32,9 @@ public class Prey extends BoidNew {
 
 	  }
 
-	
+
 	public void ruleDistanceMin(BoidsNew boidsHerds) //Garder une distance minimale séparant les Boid
-	{	
+	{
 		int cX = 0;
 		int cY = 0;
 		for( int j = 0; (j < boidsHerds.PreysTab.length) ; j++)
@@ -73,7 +73,7 @@ public class Prey extends BoidNew {
 		this.addAccelerationY(cY/(counter));
 	}
 
-	
+
 
 
 
