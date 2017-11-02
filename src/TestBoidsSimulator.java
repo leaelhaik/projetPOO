@@ -6,9 +6,9 @@ import java.awt.Color ;
 public class TestBoidsSimulator
 {
   public static void main ( String[] args ) {
-  BoidsSimulator b = new BoidsSimulator(1,1);
+  BoidsSimulator b = new BoidsSimulator(1,10);
   b.gui.setSimulable ( b ) ;
 
 }
 
-}
+  }

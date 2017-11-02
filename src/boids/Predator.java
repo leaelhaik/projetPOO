@@ -38,6 +38,7 @@ public class Predator extends BoidNew {
 	public void move(BoidsNew boidsHerds) {
 		resetAcceleration();
 		ruleDistance(boidsHerds);
+		this.hunt(boidsHerds);
 		this.boundPosition(1200,800,0,0);
 		update();
 	}
@@ -50,18 +51,16 @@ public class Predator extends BoidNew {
 
 	@Override
 	public void hunt(BoidsNew boidsHerds) {
-		for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
+		double distMin= this.distanceFrom(boidsHerds.PreysTab[0]);
+		Prey nearestBoid = boidsHerds.PreysTab[0];
+		for( int i =1; (i < boidsHerds.PreysTab.length); i++)
 		{
-				double sumOrientation=0;
-				int counter=1;
-			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 100000)
-			 {
-				sumOrientation += boidsHerds.PreysTab[j].getOrientation();
-				counter++;
-			 }
-			 this.setOrientation(sumOrientation/counter);
+			if(this.distanceFrom(boidsHerds.PreysTab[i]) < distMin) nearestBoid = boidsHerds.PreysTab[i];
 		}
-
+		this.addAccelerationX((nearestBoid.x-this.x));
+		this.addAccelerationY((nearestBoid.y-this.y));
+		this.addAccelerationX(nearestBoid.getVelocityX());
+		this.addAccelerationY(nearestBoid.getVelocityY());
 	}
 
 
