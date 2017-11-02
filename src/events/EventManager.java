@@ -67,11 +67,11 @@ public class EventManager extends Event implements Comparator<Event>
   public void restart()
   {
     this.currentDate = 0;
-    for(int i  = this.list.size()-1; i>= 1; i--)
+    for(int i  = this.list.size()-1; i>= 0; i--)
     {
       this.list.remove(i);
     }
-    (this.list.get(0)).date = 0;
+
   }
 
   public void sort()
