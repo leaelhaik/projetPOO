@@ -35,22 +35,32 @@ public class Predator extends BoidNew {
 	  }
 
 	@Override
-	public void move(BoidsNew BoidsHerds) {
+	public void move(BoidsNew boidsHerds) {
 		resetAcceleration();
-		ruleDistance(BoidsHerds);
+		ruleDistance(boidsHerds);
 		this.boundPosition(1200,800,0,0);
 		update();
 	}
 
 	@Override
-	public void flee(BoidsNew BoidsHerds) {
+	public void flee(BoidsNew BbidsHerds) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void hunt(BoidsNew BoidsHerds) {
-		// TODO Auto-generated method stub
+	public void hunt(BoidsNew boidsHerds) {
+		for( int j = 0; (j < boidsHerds.PreysTab.length); j++)
+		{
+			 if (this.distanceFrom(boidsHerds.PreysTab[j]) < 200)
+			 {
+				 this.setOrientation(boidsHerds.PreysTab[j].getOrientation());
+				 this.addVelocityX(50);
+				 this.addVelocityY(50);
+				 this.addAccelerationX(10);
+				 this.addAccelerationY(10);
+			 }
+		}
 
 	}
 

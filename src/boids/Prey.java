@@ -51,7 +51,6 @@ public class Prey extends BoidNew {
 	}
 
 
-
 	public void ruleVelocity(BoidsNew boidsHerds) //Les boids tendent à s'aligner en Vitesse
 	{
 		int cX = 0;
@@ -91,10 +90,10 @@ public class Prey extends BoidNew {
 		{
 			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 200)
 			 {
-				 this.setVelocityX(-this.getVelocityX());
-				 this.setVelocityY(-this.getVelocityY());
-				 this.setAccelerationX(-this.getAccelerationX());
-				 this.setAccelerationY(-this.getAccelerationY());
+				 this.setVelocityX(-this.getVelocityX()-75);
+				 this.setVelocityY(-this.getVelocityY()-75);
+				 this.setAccelerationX(-this.getAccelerationX()-15);
+				 this.setAccelerationY(-this.getAccelerationY()-15);
 			 }
 		}
 

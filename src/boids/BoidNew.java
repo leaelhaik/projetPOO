@@ -8,7 +8,7 @@ public abstract class BoidNew extends Point{
   private double velocityY;
   private double accelerationX;
   private double accelerationY;
-  //private double orientation;
+  private double orientation;
 
   public BoidNew(int x, int y)
   {
@@ -17,7 +17,7 @@ public abstract class BoidNew extends Point{
     this.velocityY = 0;
     this.accelerationX = 0;
     this.accelerationY = 0;
-  //  this.orientation = 0;
+    this.orientation = 0;
   }
 
   public BoidNew()
@@ -27,6 +27,7 @@ public abstract class BoidNew extends Point{
     this.velocityY = 0;
     this.accelerationX = 0;
     this.accelerationY = 0;
+    this.orientation = 0;
   }
 
   public BoidNew(int x, int y, double vx, double vy, double ax, double ay)
@@ -36,6 +37,7 @@ public abstract class BoidNew extends Point{
 	  this.velocityY = vy;
 	  this.accelerationX = ax;
 	  this.accelerationY = ay;
+	  this.orientation=Math.acos(vx/Math.sqrt(vx*vx+vy*vy));
   }
 
 
@@ -55,16 +57,17 @@ public abstract class BoidNew extends Point{
   {
     return Math.sqrt(Math.pow(this.x-boid.x,2)+Math.pow(this.y-boid.y,2));
   }
-
+  
+  
 
   public void update() {
 	  this.accelerationX=this.accelerationX/(float)4.0;
       this.accelerationY=this.accelerationY/(float)4.0;
       this.velocityX+=this.accelerationX;
       this.velocityY+=this.accelerationY;
-      this.limitVelocity(1500,1500);
-      this.x += this.velocityX/30;
-      this.y += this.velocityY/30;
+      this.limitVelocity(1400,1400);
+      this.x += (float)this.velocityX/(float)10;
+      this.y += (float)this.velocityY/(float)10;
   }
 
   public void resetAcceleration() //Remet l'acceleration des Boids à 0
@@ -94,25 +97,23 @@ public abstract class BoidNew extends Point{
 
       if(this.x < Xmin)
       {
-        this.addAccelerationX(4000);
-        this.addVelocityX(200);
-
+        this.addAccelerationX(5000);
+      //  this.addVelocityX(200);
       }
       if(this.y < Ymin)
       {
-        this.addAccelerationY(4000);
-        this.addVelocityY(200);
-
+        this.addAccelerationY(5000);
+      //  this.addVelocityX(140);
       }
       if(this.x > Xmax )
       {
-        this.addAccelerationX(-4000);
-        this.addVelocityX(-200);
+        this.addAccelerationX(-5000);
+      //  this.addVelocityX(-200);
       }
       if(this.y > Ymax )
       {
-        this.addAccelerationY(-4000);
-        this.addVelocityY(-200);
+        this.addAccelerationY(-5000);
+      //  this.addVelocityX(-140);
       }
   }
 
@@ -190,5 +191,16 @@ public abstract class BoidNew extends Point{
     this.accelerationY = i;
   }
 
+  
+  public double getOrientation() {
+	  return this.orientation;
+  }
+  
+  public void setOrientation(double angle) {
+	 double vx=this.velocityX;
+	 double vy= this.velocityY;
+	 this.velocityX=Math.sqrt(vx*vx+vy*vy)*Math.cos(angle);
+	 this.velocityY=Math.sqrt(vx*vx+vy*vy)*Math.sin(angle);
+  }
 
   }
