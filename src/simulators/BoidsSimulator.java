@@ -15,7 +15,7 @@ public class BoidsSimulator extends BoidsNew implements Simulable
   public BoidsSimulator(int nbPredators, int nbPreys)
   {
     super(nbPredators,nbPreys);
-    this.gui =  new GUISimulator (1500 , 1200 , Color . BLACK ) ;
+    this.gui =  new GUISimulator (1500 , 900 , Color . BLACK ) ;
     this.e = new EventManager(0);
     this.m = new MovePreys(0,this);
     this.n = new MovePredators(0,this);
