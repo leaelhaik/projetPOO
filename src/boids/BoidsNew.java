@@ -31,14 +31,14 @@ public class BoidsNew {
     {
       s += "[" + i + " position:(" + this.PreysTab[i].x + "," + this.PreysTab[i].y + ") | vitesse:(" +
 			this.PreysTab[i].getVelocityX() + "," + this.PreysTab[i].getVelocityY() + ") | acceleration:(" +
-			this.PreysTab[i].getAccelerationX() + "," + this.PreysTab[i].getAccelerationX() + ") ] \n" ;
+			this.PreysTab[i].getAccelerationX() + "," + this.PreysTab[i].getAccelerationX() + ") | orientation:(" + this.PreysTab[i].getOrientation() + ") ] \n" ;
     }
 		s += "PREDATORS: \n";
 		for( int i=0; i< this.PredatorsTab.length; i++)
 		{
 			s += "[" + i + " position:(" + this.PredatorsTab[i].x + "," + this.PredatorsTab[i].y + ") | vitesse:(" +
 			this.PredatorsTab[i].getVelocityX() + "," + this.PredatorsTab[i].getVelocityY() + ") | acceleration:(" +
-			this.PredatorsTab[i].getAccelerationX() + "," + this.PredatorsTab[i].getAccelerationX() + ") ] \n" ;
+			this.PredatorsTab[i].getAccelerationX() + "," + this.PredatorsTab[i].getAccelerationX() + ") | orientation:(" + this.PredatorsTab[i].getOrientation() + ") ] \n" ;
 		}
     return s;
   }

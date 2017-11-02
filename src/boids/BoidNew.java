@@ -201,6 +201,7 @@ public abstract class BoidNew extends Point{
 	 double vy= this.velocityY;
 	 this.velocityX=Math.sqrt(vx*vx+vy*vy)*Math.cos(angle);
 	 this.velocityY=Math.sqrt(vx*vx+vy*vy)*Math.sin(angle);
+	 this.orientation=angle;
   }
 
   }
