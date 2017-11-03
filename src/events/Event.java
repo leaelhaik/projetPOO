@@ -2,7 +2,7 @@ package events;
 
 public abstract class Event
 {
-  public int date;
+  private int date;
 
 
   public Event(int date)
@@ -10,7 +10,10 @@ public abstract class Event
     this.date = date;
   }
 
-  public abstract int getDate();
+  public int getDate()
+  {
+    return this.date;
+  }
 
   public abstract void execute();
 

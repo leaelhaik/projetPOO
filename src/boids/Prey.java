@@ -13,22 +13,22 @@ public class Prey extends BoidNew {
 
 	        int cX = 0; //Contient la somme des poisitions en X
 	        int cY = 0; //Contient la somme des poisitions en Y
-					int counter;
+					int counter=1;
 
 	      for(int j = 0; (j < boidsHerds.PreysTab.length) ; j++)
 	        {
 	          if (this != boidsHerds.PreysTab[j]) //On inclut pas le boid i dans le calcul du centre de masse
 	          {
-							//if (this.distanceFrom(boidsHerds.PreysTab[j]) < 30000)
-							//{
+							if (this.distanceFrom(boidsHerds.PreysTab[j]) < 500)//On peut modifier la distance d'effet de la regle
+							{
 			          cX += boidsHerds.PreysTab[j].x;
 			          cY += boidsHerds.PreysTab[j].y;
-
-							//}
+								counter++;
+							}
 	          }
 	        }
-	      this.addAccelerationX((1/10)*cX/(boidsHerds.PreysTab.length-1));//On ajoute le centre de masse à l'accéleration en X
-	      this.addAccelerationY((1/10)*cY/(boidsHerds.PreysTab.length-1));//On ajoute le centre de masse à l'accéleration en Y
+	      this.addAccelerationX((1/2)*cX/(counter));//On ajoute le centre de masse à l'accéleration en X
+	      this.addAccelerationY((1/2)*cY/(counter));//On ajoute le centre de masse à l'accéleration en Y
 
 	  }
 
@@ -61,14 +61,16 @@ public class Prey extends BoidNew {
 		{
 			if (this != boidsHerds.PreysTab[j])
 			{
+				if (this.distanceFrom(boidsHerds.PreysTab[j]) < 500)//On peut modifier la distance d'effet de la regle
 				{
 					cX += boidsHerds.PreysTab[j].getVelocityX(); // Contient la somme des vitesses en X
 					cY += boidsHerds.PreysTab[j].getVelocityY(); // Contient la somme des vitesses en Y
+					counter++;
 				}
 			}
 		}
-		this.addAccelerationX(cX/( boidsHerds.PreysTab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
-		this.addAccelerationY(cY/( boidsHerds.PreysTab.length-1));
+		this.addAccelerationX(cX/( counter)); //On ajoute à l'acceleration une portion de la somme des vitesses
+		this.addAccelerationY(cY/( counter));
 	}
 
 
@@ -77,8 +79,7 @@ public class Prey extends BoidNew {
 
 
 	@Override
-	public void move(BoidsNew boidsHerds) {
-		//System.out.println(this.getAccelerationX());
+	public void move(BoidsNew boidsHerds) { //methode qui met en mouvement la proie
 		this.ruleHerd(boidsHerds);
 		this.ruleDistanceMin(boidsHerds);
 		this.ruleVelocity(boidsHerds);
@@ -88,14 +89,12 @@ public class Prey extends BoidNew {
 	}
 
 	@Override
-	public void flee(BoidsNew boidsHerds) {
-		int cX=0;
-		int cY=0;
+	public void flee(BoidsNew boidsHerds) { //methode pour fuir les predateurs
 		for( int j = 0; (j < boidsHerds.PredatorsTab.length); j++)
 		{
-			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 200)
+			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 200)//Si la proie est trop proche d'un predateur
 			 {
-				if(boidsHerds.PredatorsTab[j].getVelocityX() >= 0){this.addAccelerationX(200);}
+				if(boidsHerds.PredatorsTab[j].getVelocityX() >= 0){this.addAccelerationX(200);}//on modifie son acceleration pour eviter le predateur
 				else {this.addAccelerationX(-200);}
 				if(boidsHerds.PredatorsTab[j].getVelocityY() >= 0){this.addAccelerationY(200);}
 				else {this.addAccelerationY(-200);}
@@ -105,7 +104,7 @@ public class Prey extends BoidNew {
 	}
 
 	@Override
-	public void hunt(BoidsNew boidsHerds) {
+	public void hunt(BoidsNew boidsHerds) { //les Proies de chassent pas
 		// TODO Auto-generated method stub
 
 	}

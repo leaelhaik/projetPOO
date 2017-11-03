@@ -1,4 +1,5 @@
 import gui.*;
+import grid.*;
 import simulators.GridConwaySimulator;
 
 public class TestGridConwaySimulator {

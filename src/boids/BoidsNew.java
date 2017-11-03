@@ -1,13 +1,13 @@
 package boids;
 
 import java.util.Random;
-
+import java.text.DecimalFormat;
 public class BoidsNew {
 
 	protected Predator[] PredatorsTab;
 	protected Prey[] PreysTab;
 
-	public BoidsNew(int nbPredators, int nbPreys) {
+	public BoidsNew(int nbPredators, int nbPreys) {//Boids est un Tableau de Boid
 		this.PredatorsTab = new Predator[nbPredators];
 	    for(int i = 0;i<nbPredators;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
 	    {
@@ -25,20 +25,22 @@ public class BoidsNew {
 	@Override //Réécriture de la méthode toString
   public String toString()
   {
+		DecimalFormat df = new DecimalFormat(); //Pour plus de lisibilité, on n'affiche que 2 chriffes apres la virgule
+		df.setMaximumFractionDigits(2);
     String s = new String();
 		s += "PREYS: \n";
     for( int i=0; i< this.PreysTab.length; i++)
     {
-      s += "[" + i + " position:(" + this.PreysTab[i].x + "," + this.PreysTab[i].y + ") | vitesse:(" +
-			this.PreysTab[i].getVelocityX() + "," + this.PreysTab[i].getVelocityY() + ") | acceleration:(" +
-			this.PreysTab[i].getAccelerationX() + "," + this.PreysTab[i].getAccelerationX() + ") | orientation:(" + this.PreysTab[i].getOrientation() + ") ] \n" ;
+      s += "[" + i + " position:(" + df.format(this.PreysTab[i].x) + "," + df.format(this.PreysTab[i].y) + ") | vitesse:(" +
+			df.format(this.PreysTab[i].getVelocityX()) + "," + df.format(this.PreysTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.PreysTab[i].getAccelerationX()) + "," + df.format(this.PreysTab[i].getAccelerationX()) + ") | orientation:(" + df.format(this.PreysTab[i].getOrientation()) + ") ] \n" ;
     }
 		s += "PREDATORS: \n";
 		for( int i=0; i< this.PredatorsTab.length; i++)
 		{
-			s += "[" + i + " position:(" + this.PredatorsTab[i].x + "," + this.PredatorsTab[i].y + ") | vitesse:(" +
-			this.PredatorsTab[i].getVelocityX() + "," + this.PredatorsTab[i].getVelocityY() + ") | acceleration:(" +
-			this.PredatorsTab[i].getAccelerationX() + "," + this.PredatorsTab[i].getAccelerationX() + ") | orientation:(" + this.PredatorsTab[i].getOrientation() + ") ] \n" ;
+			s += "[" + i + " position:(" + df.format(this.PredatorsTab[i].x) + "," + df.format(this.PredatorsTab[i].y) + ") | vitesse:(" +
+			df.format(this.PredatorsTab[i].getVelocityX()) + "," + df.format(this.PredatorsTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.PredatorsTab[i].getAccelerationX()) + "," + df.format(this.PredatorsTab[i].getAccelerationX()) + ") | orientation:(" + df.format(this.PredatorsTab[i].getOrientation()) + ") ] \n" ;
 		}
     return s;
   }
@@ -74,7 +76,7 @@ public class BoidsNew {
 		}
 	}
 
-	
+
 	public void reInitBoids() //Réinitialise les valeurs de attributs des Boid
 	{
  		for(int i = 0;i< this.PredatorsTab.length;i++)

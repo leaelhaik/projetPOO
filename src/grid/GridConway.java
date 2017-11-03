@@ -1,7 +1,7 @@
 package grid;
 
 import grid.cells.CellConway;
-import grid.cells.CellState;
+import grid.cells.*;
 import java.lang.Math;
 
 public class GridConway {
@@ -20,7 +20,7 @@ public GridConway(int length, int width) {
 			}
 		}
 	}
-	
+
 public GridConway(int length, int width, CellState cellState) {
 	this.length=length;
 	this.width=width;

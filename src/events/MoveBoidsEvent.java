@@ -13,10 +13,6 @@ public class MoveBoidsEvent extends Event
     super(date);
     this.boids = boids;
   }
-  public int getDate()
-  {
-    return this.date;
-  }
 
   public void execute()
   {

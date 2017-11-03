@@ -16,11 +16,7 @@ public class BoidsSimulator extends BoidsNew implements Simulable
   {
     super(nbPredators,nbPreys);
     this.gui =  new GUISimulator (1400 , 900 , Color . BLACK ) ;
-    this.e = new EventManager(0);
-    this.m = new MovePreys(0,this);
-    this.n = new MovePredators(0,this);
-    e.addEvent(m);
-    e.addEvent(n);
+    this.e = new EventManager(0, this);
 
   }
 
@@ -29,6 +25,7 @@ public class BoidsSimulator extends BoidsNew implements Simulable
   {
     this.e.next();
     System.out.println( this.toString());
+    System.out.println(e.toString());
     this.gui.reset();
     for(int i=0;i<this.PreysTab.length;i++)
     {

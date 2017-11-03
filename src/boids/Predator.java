@@ -33,7 +33,7 @@ public class Predator extends BoidNew {
 		resetAcceleration();
 		ruleDistanceMin(boidsHerds);
 		this.hunt(boidsHerds);
-		this.boundPosition(1000,600,0,0);
+		this.boundPosition(1000,600,50,50);
 		update();
 	}
 
@@ -47,13 +47,13 @@ public class Predator extends BoidNew {
 	public void hunt(BoidsNew boidsHerds) {
 		double distMin= this.distanceFrom(boidsHerds.PreysTab[0]);
 		Prey nearestBoid = boidsHerds.PreysTab[0];
-		for( int i =1; (i < boidsHerds.PreysTab.length); i++)
+		for( int i =1; (i < boidsHerds.PreysTab.length); i++)// Le predateur cherche la proie la plus proche
 		{
 			if(this.distanceFrom(boidsHerds.PreysTab[i]) < distMin) nearestBoid = boidsHerds.PreysTab[i];
 		}
-		this.addAccelerationX((nearestBoid.x-this.x));
+		this.addAccelerationX((nearestBoid.x-this.x));//on ajoute a l'acceleration sa distance par rapport a la proie
 		this.addAccelerationY((nearestBoid.y-this.y));
-		this.addAccelerationX(nearestBoid.getVelocityX());
+		this.addAccelerationX(nearestBoid.getVelocityX());//on fais concorder la vitesse du predateur a la vitesse de la proie
 		this.addAccelerationY(nearestBoid.getVelocityY());
 	}
 

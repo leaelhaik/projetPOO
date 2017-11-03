@@ -93,27 +93,21 @@ public abstract class BoidNew extends Point{
 
   public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin)
   {
-
-
       if(this.x < Xmin)
       {
         this.addAccelerationX(150);
-      //  this.addVelocityX(200);
       }
       if(this.y < Ymin)
       {
         this.addAccelerationY(150);
-      //  this.addVelocityX(140);
       }
       if(this.x > Xmax )
       {
         this.addAccelerationX(-150);
-      //  this.addVelocityX(-200);
       }
       if(this.y > Ymax )
       {
         this.addAccelerationY(-150);
-      //  this.addVelocityX(-140);
       }
   }
 

@@ -21,7 +21,7 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testBallsSimulator testGridConwaySimulator 
+all: testBallsSimulator testGridConwaySimulator testVacants testBoidsSimulator testGridnSimulator testSchellingSimulator
 
 testBoids:
 	javac -d bin -sourcepath src src/TestBoids.java
