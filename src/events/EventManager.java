@@ -16,7 +16,7 @@ public class EventManager extends Event implements Comparator<Event>
   {
     super(date);
     this.currentDate = 0;
-    this.list = new ArrayList<Event>();
+    this.list = new ArrayList<Event>(); // l'event manager possede une liste d'evenements
     this.boids = boids;
     this.mvPreys = new MovePreys(0,boids);
     this.mvPredators = new MovePredators(0,boids);
@@ -25,7 +25,7 @@ public class EventManager extends Event implements Comparator<Event>
   }
 
   @Override
-  public String toString()
+  public String toString() // Reecriture de la methode toString, affiche la liste ainsi que la date courante
    {
      String s = new String();
      s +=  "  taille: " +this.list.size()+" \n";
@@ -43,13 +43,13 @@ public class EventManager extends Event implements Comparator<Event>
     {
       if ( (this.list.get(i)).getDate() == currentDate)
       {
-                if(this.list.get(i) instanceof MovePreys)
+                if(this.list.get(i) instanceof MovePreys) // si l'evenement est de type MovePreys
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPrey  s'est execute");
                   this.addEvent(new MovePreys(currentDate+1,this.boids));
                 }
-                if(this.list.get(i) instanceof MovePredators)
+                if(this.list.get(i) instanceof MovePredators) // si l'evenement est de type MovePredators
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPredator s'est execute");
@@ -59,7 +59,7 @@ public class EventManager extends Event implements Comparator<Event>
     }
   }
 
-  public void removeObsoleteEvents()
+  public void removeObsoleteEvents() // enleve les evenements antérieurs a currentDate de la liste
   {
     for(int i  = this.list.size()-1; i>= 0; i--)
     {

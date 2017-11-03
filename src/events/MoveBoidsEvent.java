@@ -18,8 +18,4 @@ public class MoveBoidsEvent extends Event
   {
     this.boids.moveBoids();
   }
-
-
-
-
 }

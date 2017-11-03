@@ -14,9 +14,9 @@ public class MovePredators extends Event
     this.boids = boids;
   }
 
-  public void execute()
+  public void execute() // réécriture de la méthode
   {
-    this.boids.movePredators();
+    this.boids.movePredators(); // l'evenement fait bouger les predateurs
   }
 
 

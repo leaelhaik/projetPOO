@@ -1,6 +1,6 @@
 package events;
 
-public abstract class Event
+public abstract class Event // classe abstraite sur-classe de différents types d'evenements
 {
   private int date;
 
@@ -10,7 +10,7 @@ public abstract class Event
     this.date = date;
   }
 
-  public int getDate()
+  public int getDate()// renvoie la date de l'evenement
   {
     return this.date;
   }
