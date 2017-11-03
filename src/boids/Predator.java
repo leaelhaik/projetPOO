@@ -8,38 +8,32 @@ public class Predator extends BoidNew {
 	}
 
 
-	public void ruleDistance(BoidsNew BoidsHerds) //Garder une distance minimale séparant les Boid
-	  {
-	    for (int i =0; i<BoidsHerds.PredatorsTab.length; i ++)
-	    {
-	      int cX = 0;
-	      int cY = 0;
-	      for( int j = 0; (j < BoidsHerds.PredatorsTab.length) ; j++)
-	      {
-	        if (j !=i)
-	        {
-	          if (Math.abs(BoidsHerds.PredatorsTab[i].x - BoidsHerds.PredatorsTab[j].x) < 50 ) //Si la distance est trop petite
-	          {
-	            cX += -(BoidsHerds.PredatorsTab[i].x - BoidsHerds.PredatorsTab[j].x);//On décrémente cX de la distance trop courte
-	          }
-	          if (Math.abs(BoidsHerds.PredatorsTab[i].y - BoidsHerds.PredatorsTab[j].y) < 50 )
-	          {
-	            cY += -(BoidsHerds.PredatorsTab[i].y - BoidsHerds.PredatorsTab[j].y);//On décrémente cX de la distance trop courte
-	          }
-	        }
-	      }
-	      BoidsHerds.PredatorsTab[i].addAccelerationX(cX); //On retranche cette distance à l'accelerationX
-	      BoidsHerds.PredatorsTab[i].addAccelerationX(cY); //On retranche cette distance à l'accelerationX
 
-	    }
-	  }
+		public void ruleDistanceMin(BoidsNew boidsHerds) //Garder une distance minimale séparant les Boid
+		{
+			int cX = 0;
+			int cY = 0;
+			for( int j = 0; (j < boidsHerds.PredatorsTab.length) ; j++)
+			{
+				if (this != boidsHerds.PredatorsTab[j])
+		        {
+		          if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 400)//Si la distance est trop petite
+		          {
+		            cX += (2/1)*(this.x - boidsHerds.PredatorsTab[j].x);
+								cY += (2/1)*(this.y - boidsHerds.PredatorsTab[j].y);//On décrémente cX de la distance trop courte
+		          }
+		        }
+			}
+			this.addAccelerationX(cX); //On retranche cette distance à l'accelerationX
+			this.addAccelerationY(cY); //On retranche cette distance à l'accelerationX
+		}
 
 	@Override
 	public void move(BoidsNew boidsHerds) {
 		resetAcceleration();
-		ruleDistance(boidsHerds);
+		ruleDistanceMin(boidsHerds);
 		this.hunt(boidsHerds);
-		this.boundPosition(1200,800,0,0);
+		this.boundPosition(1000,600,0,0);
 		update();
 	}
 

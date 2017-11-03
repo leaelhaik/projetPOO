@@ -41,7 +41,7 @@ public class Prey extends BoidNew {
 		{
 			if (this != boidsHerds.PreysTab[j])
 	        {
-	          if (this.distanceFrom(boidsHerds.PreysTab[j]) < 100)//Si la distance est trop petite
+	          if (this.distanceFrom(boidsHerds.PreysTab[j]) < 50)//Si la distance est trop petite
 	          {
 	            cX += (1/1)*(this.x - boidsHerds.PreysTab[j].x);
 							cY += (1/1)*(this.y - boidsHerds.PreysTab[j].y);//On décrémente cX de la distance trop courte
@@ -61,16 +61,14 @@ public class Prey extends BoidNew {
 		{
 			if (this != boidsHerds.PreysTab[j])
 			{
-				if (this.distanceFrom(boidsHerds.PreysTab[j]) < 30000)
 				{
 					cX += boidsHerds.PreysTab[j].getVelocityX(); // Contient la somme des vitesses en X
 					cY += boidsHerds.PreysTab[j].getVelocityY(); // Contient la somme des vitesses en Y
-					counter++;
 				}
 			}
 		}
-		this.addAccelerationX(cX/(counter)); //On ajoute à l'acceleration une portion de la somme des vitesses
-		this.addAccelerationY(	cY/(counter));
+		this.addAccelerationX(cX/( boidsHerds.PreysTab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
+		this.addAccelerationY(cY/( boidsHerds.PreysTab.length-1));
 	}
 
 
@@ -97,10 +95,10 @@ public class Prey extends BoidNew {
 		{
 			 if (this.distanceFrom(boidsHerds.PredatorsTab[j]) < 200)
 			 {
-				if(this.getAccelerationX() >= 0){this.addAccelerationX(-100);}
-				else {this.addAccelerationX(1000);}
-				if(this.getAccelerationY() >= 0){this.addAccelerationY(-100);}
-				else {this.addAccelerationY(1000);}
+				if(boidsHerds.PredatorsTab[j].getVelocityX() >= 0){this.addAccelerationX(200);}
+				else {this.addAccelerationX(-200);}
+				if(boidsHerds.PredatorsTab[j].getVelocityY() >= 0){this.addAccelerationY(200);}
+				else {this.addAccelerationY(-200);}
 			 }
 		}
 
