@@ -15,7 +15,7 @@ public abstract class Event
     return this.date;
   }
 
-  public abstract void execute();
+  public abstract void execute();//a ecrire dans les differents types d'events
 
 
 

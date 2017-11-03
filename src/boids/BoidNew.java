@@ -1,15 +1,24 @@
 package boids;
 import java.awt.Point;
 import java.util.Random;
-//CREER METHODE AJOUT POUR accelerationX ET velocityX
+/**
+* Classe Boid, sous clase de Point
+* <p>Possède une vitesse en X et Y ainsi qu'une accélération en X et Y */
 public abstract class BoidNew extends Point{
+/**
+*velocityX: Vitesse en x,
+*<p>velocityY: Vitesse en y,
+*<p> accelerationX: Accélération en x,
+*<p> accelerationY: Accélération en y,
+*/
 
   private double velocityX;
   private double velocityY;
   private double accelerationX;
   private double accelerationY;
   private double orientation;
-
+  /** Reprend le constructeur de Point()
+    */
   public BoidNew(int x, int y)
   {
     super(x,y);
@@ -19,7 +28,7 @@ public abstract class BoidNew extends Point{
     this.accelerationY = 0;
     this.orientation = 0;
   }
-
+/** Reprend le constructeur de Point()*/
   public BoidNew()
   {
     super();
@@ -29,7 +38,7 @@ public abstract class BoidNew extends Point{
     this.accelerationY = 0;
     this.orientation = 0;
   }
-
+/** permet d'initialiser les attributs de BoidNew aux valeurs souhaitées */
   public BoidNew(int x, int y, double vx, double vy, double ax, double ay)
   {
 	  super(x,y);
@@ -40,8 +49,8 @@ public abstract class BoidNew extends Point{
 	  this.orientation=Math.acos(vx/Math.sqrt(vx*vx+vy*vy));
   }
 
-
-  public void reInit() //Réinitialise les valeurs de attributs des Boid
+/**Réinitialise les valeurs de attributs des Boid*/
+  public void reInit()
   {
 
       Random r = new Random();
@@ -52,14 +61,14 @@ public abstract class BoidNew extends Point{
       this.setAccelerationY(0);
 
   }
-
+/** renvoie la distance entre Boid et un autre Boid */
   public double distanceFrom(BoidNew boid)
   {
     return Math.sqrt(Math.pow(this.x-boid.x,2)+Math.pow(this.y-boid.y,2));
   }
 
 
-
+/** Met a jour la position d'un Boid */
   public void update() {
 	  this.accelerationX=this.accelerationX/(float)4.0;
       this.accelerationY=this.accelerationY/(float)4.0;
@@ -77,6 +86,10 @@ public abstract class BoidNew extends Point{
 
   }
 
+/** Permet de limiter la vitesse du boid
+* @param vLimX vitesse en x
+* @param vLimY vitesse en y
+*/
 
   public void limitVelocity(int vLimX, int vLimY) // Limite la vitesse des Boids à la vitesse vLim
   {
@@ -90,6 +103,14 @@ public abstract class BoidNew extends Point{
         this.setVelocityY((this.getVelocityY()/Math.abs(this.getVelocityY()))*vLimY);
       }
   }
+
+/**
+* Borne la position du BoidNew
+* @param Xmax position en x max
+* @param Ymax position en y max
+* @param Xmin position en x min
+* @param Ymin position en y min
+*/
 
   public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin)
   {
@@ -118,10 +139,19 @@ public abstract class BoidNew extends Point{
 
 
   public abstract void move(BoidsNew BoidsLists);
+   /**
+  * Methode abstraite implémentée dans les sous classes de BoidNew
+  *<p> Permet le mouvement du boid */
 
   public abstract void flee(BoidsNew BoidsLists);
+  /**
+ * Methode abstraite implémentée dans les sous classes de BoidNew
+ *<p> Permet au boid de s'echapper d'autres boids */
 
   public abstract void hunt(BoidsNew BoidsLists);
+  /**
+ * Methode abstraite implémentée dans les sous classes de BoidNew
+ * <p>Permet au boid de chasser d'autres boids */
 
 
 

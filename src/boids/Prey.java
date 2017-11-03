@@ -1,11 +1,23 @@
 package boids;
 
+/**
+* Classe des Proie, sous classe de BoidNew
+* <p>Reprend le constructeur de BoidNew
+*/
+
 public class Prey extends BoidNew {
-
-
+/** Prey a les mêmes parametres que BoidNew
+*/
 	public Prey(int x, int y, double vx, double vy, double ax, double ay) {
 		super(x, y, vx, vy, ax, ay);
 	}
+
+/**
+* ruleHerd est une regle pour Prey
+* <p>On calcule le centre de masse des Preys proches (on peut choisir la distance d'effet)
+* <p>On ajoute ce centre de masse à l'accélération de Prey
+*  @param boidsHerds est le troupeau dans lequel se trouve Prey
+*/
 
 
 	public void ruleHerd(BoidsNew boidsHerds)//Calcule les centre de masse de chaque troupeau de Boid
@@ -33,6 +45,14 @@ public class Prey extends BoidNew {
 	  }
 
 
+		/**
+		* ruleDistanceMin est une regle pour Prey
+		* <p>Permet de garder une distance minimale entre les Preys du troupeau
+		* <p>Si un membre du troupeau est trop proche de Prey, on calcule la distance du membre à Prey
+		* <p>On retranche cette distance à l'acceleration de Prey
+		*  @param boidsHerds est le troupeau dans lequel se trouve Prey
+		*/
+
 	public void ruleDistanceMin(BoidsNew boidsHerds) //Garder une distance minimale séparant les Boid
 	{
 		int cX = 0;
@@ -51,6 +71,15 @@ public class Prey extends BoidNew {
 		this.addAccelerationX(cX); //On retranche cette distance à l'accelerationX
 		this.addAccelerationY(cY); //On retranche cette distance à l'accelerationX
 	}
+
+
+	/**
+	* ruleVelocity est une regle pour Prey
+	* <p>On calule la vitesse moyenne des Preys de boidsHerds
+	* <p>On ajoute cette vitesse moyenne à l'acceleration de prey
+	*  @param boidsHerds est le troupeau dans lequel se trouve Prey
+	*/
+
 
 	public void ruleVelocity(BoidsNew boidsHerds) //Les boids tendent à s'aligner en Vitesse
 	{
@@ -76,7 +105,14 @@ public class Prey extends BoidNew {
 
 
 
-
+	/**
+	* move() est une methode abstraite de BoidNew BoidNew
+	* <p>On applique les troies règles à Prey
+	* <p>On applique la méthode flee()
+	*<p> On s'assure que Prey reste dans l'affichage à l'aide de boundPosition
+	* <p>On actualise la position
+	*  @param boidsHerds est le troupeau dans lequel se trouve Prey
+	*/
 
 	@Override
 	public void move(BoidsNew boidsHerds) { //methode qui met en mouvement la proie
@@ -88,6 +124,12 @@ public class Prey extends BoidNew {
 		this.update();
 	}
 
+/**
+* flee() est une methode abstraite de BoidNew
+* <p>elle permet à Prey de s'eloigner des Predators
+* <p>Si le predateur est trop proche, on modifie son acceleration suivant la vitesse de Predator
+*  @param boidsHerds est le troupeau dans lequel se trouve Prey
+*/
 	@Override
 	public void flee(BoidsNew boidsHerds) { //methode pour fuir les predateurs
 		for( int j = 0; (j < boidsHerds.PredatorsTab.length); j++)
@@ -102,7 +144,10 @@ public class Prey extends BoidNew {
 		}
 
 	}
-
+/**
+* hunt() est une methode abstraide de BoidNew
+* <p>Elle n'est pas implementée dans cette classe car Prey ne chasse pas
+*/
 	@Override
 	public void hunt(BoidsNew boidsHerds) { //les Proies de chassent pas
 		// TODO Auto-generated method stub

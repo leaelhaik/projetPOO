@@ -21,17 +21,17 @@ public class BoidsSimulator extends BoidsNew implements Simulable
   }
 
   @Override
-  public void next ()
+  public void next () // s'execute lors de l'appui sur le bouton suivant
   {
     this.e.next();
     System.out.println( this.toString());
     System.out.println(e.toString());
     this.gui.reset();
-    for(int i=0;i<this.PreysTab.length;i++)
+    for(int i=0;i<this.PreysTab.length;i++)//affichage des proies
     {
       this.gui.addGraphicalElement( new Rectangle(this.PreysTab[i].x, this.PreysTab[i].y,Color.decode("#1f77b4"),Color.decode("#1f77b4"),2) );
     }
-    for(int i=0; i<this.PredatorsTab.length ;i++)
+    for(int i=0; i<this.PredatorsTab.length ;i++)//affichage des predateurs
     {
       this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),5) );
     }
@@ -39,7 +39,7 @@ public class BoidsSimulator extends BoidsNew implements Simulable
 
 
   @Override
-  public void restart ()
+  public void restart () //s'execute lors de l'appui sur le bouton reset
   {
     this.reInitBoids();
     System.out.println(this.toString());
@@ -53,6 +53,7 @@ public class BoidsSimulator extends BoidsNew implements Simulable
       this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),5) );
     }
     this.e.restart();
+    //ajout de nouveaux events a la date 0
     this.e.addEvent(new MovePreys(0,this));
     this.e.addEvent(new MovePredators(0,this));
 
