@@ -1,7 +1,6 @@
 package grid;
 import java.util.*;
 import grid.cells.Cell;
-import grid.cells.CellState;
 import grid.*;
 
 
@@ -100,10 +99,10 @@ public class GestionVacant extends Grid
                e = it.next();
                i++;
           }
-          /*if (!it.hasNext())
+          if (e!=c)
           {
                throw new IllegalArgumentException("Cannot remove that cell");
-          }*/
+          }
           it.remove();
      }
 }

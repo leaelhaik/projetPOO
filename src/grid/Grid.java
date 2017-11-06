@@ -2,7 +2,6 @@ package grid;
 
 import java.awt.Color ;
 import grid.cells.Cell;
-import grid.cells.CellState;
 import java.lang.Math;
 
 public class Grid {
@@ -50,6 +49,10 @@ public Grid(Grid grid) {
 }
 
 public Cell getCell(int i, int j) {
+	if (i> this.length || j> this.width)
+	{
+		throw new IllegalArgumentException("Impossible d'atteindre la cellule i,j -> Hors du grid");
+	}
 	return this.cellMat[i][j];
 }
 
@@ -135,6 +138,10 @@ public int countVoisinMemeCouleur(int i, int j, int k){
 }
 
 public void setStateCell(int i, int j, int cellState) {
+	if (i> this.length || j> this.width)
+	{
+		throw new IllegalArgumentException("Impossible d'atteindre la cellule i,j -> Hors du grid (setStateCell)");
+	}
 	this.getCell(i, j).setCellState(cellState);
 }
 
@@ -148,6 +155,7 @@ public int getWidth() {
 
 public String Couleur(int e)
 {
+	if (e>10) {throw new IllegalArgumentException("Le nombre de couleurs est supérieur à celui autorisé");}
 	if (e==0) {return "#FEFEFE";}
 	String c;
 	if (e<6)
@@ -155,16 +163,21 @@ public String Couleur(int e)
 		c = "#" + (String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0" +(String.valueOf(5-e)) + "0";
 		return c;
 	}
-	if (e<10)
-	{
-		 c = "#" + (String.valueOf(e)) + "2" +(String.valueOf(e)) + "2" +(String.valueOf(e)) + "2";
-		return c;
+	switch (e){
+		case 6:
+			return ("#40FF00");
+		case 7:
+			return("#00BFFF");
+		case 8:
+			return("#7401DF");
+		case 9:
+			return("#DF0174");
+		case 10:
+			return ("#08088A");
 	}
-	else
-	{
-		c = "#" + (String.valueOf(3*e)) +"DF"  +(String.valueOf(3*e)) ;
-	    return c;
-	}
+	return ("#FEFEFE");
+
+
 }
 
 

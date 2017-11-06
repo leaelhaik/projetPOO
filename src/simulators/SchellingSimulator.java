@@ -5,7 +5,6 @@ import java.awt.Color;
 import gui.Rectangle;
 import grid.Grid;
 import grid.cells.Cell;
-import grid.cells.CellState;
 import grid.*;
 import grid.GestionVacant;
 import java.util.*;
@@ -58,17 +57,8 @@ public class SchellingSimulator extends GestionVacant implements Simulable
                                           this.setStateCell(X_NouvelleCell,Y_NouvelleCell,etat);
                                           this.setStateCell(k,l,0);
                                           this.ajoutCell(this.getCell(k,l));
-                                          if (this.Est_Vacante(X_NouvelleCell,Y_NouvelleCell))
-                                          {
-                                               System.out.println(X_NouvelleCell+"/"+Y_NouvelleCell);
-                                          }
-                                          if (!this.Est_Vacante(k,l))
-                                          {
-                                               System.out.println("Ah non");
-                                          }
-
                                           this.gui.addGraphicalElement( new Rectangle(30*X_NouvelleCell+30,30*Y_NouvelleCell+30,Color.decode(this.Couleur(etat)),Color.decode(this.Couleur(etat)),30));
-                                          
+
 
                                      }
                               }
