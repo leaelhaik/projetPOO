@@ -70,7 +70,7 @@ public abstract class BoidNew extends Point{
 
 /** Met a jour la position d'un Boid */
   public void update() {
-	  this.accelerationX=this.accelerationX/(float)4.0;
+	    this.accelerationX=this.accelerationX/(float)4.0;
       this.accelerationY=this.accelerationY/(float)4.0;
       this.velocityX+=this.accelerationX;
       this.velocityY+=this.accelerationY;
@@ -85,6 +85,99 @@ public abstract class BoidNew extends Point{
       this.setAccelerationY(0);
 
   }
+
+
+
+  /**
+  * ruleHerd est une regle pour Prey
+  * <p>On calcule le centre de masse des Preys proches (on peut choisir la distance d'effet)
+  * <p>On ajoute ce centre de masse à l'accélération du boid
+  *  @param boidsHerds est le troupeau dans lequel se trouve le boid
+  */
+
+
+  	public void ruleHerd(BoidNew[] boidTab)//Calcule les centre de masse de chaque troupeau de Boid
+  	  {
+
+  	        int cX = 0; //Contient la somme des poisitions en X
+  	        int cY = 0; //Contient la somme des poisitions en Y
+  					int counter=1;
+
+  	      for(int j = 0; (j < boidTab.length) ; j++)
+  	        {
+  	          if (this != boidTab[j]) //On inclut pas le boid i dans le calcul du centre de masse
+  	          {
+  							if (this.distanceFrom(boidTab[j]) < 500)//On peut modifier la distance d'effet de la regle
+  							{
+  			          cX += boidTab[j].x;
+  			          cY += boidTab[j].y;
+  								counter++;
+  							}
+  	          }
+  	        }
+  	      this.addAccelerationX((1/2)*cX/(counter));//On ajoute le centre de masse à l'accéleration en X
+  	      this.addAccelerationY((1/2)*cY/(counter));//On ajoute le centre de masse à l'accéleration en Y
+          // le facteur 1/2 permet de diminuer l'influence de cette règle
+  	  }
+
+
+
+
+  /**
+  * ruleDistanceMin est une regle pour les boids
+  * <p>Permet de garder une distance minimale entre les boids d'un troupeau
+  * <p>Si un membre du troupeau est trop proche de ce boid, on calcule la distance du membre au boid
+  * <p>On retranche cette distance à l'acceleration du boid
+  *  @param boidsHerds est le troupeau dans lequel se trouve le boid
+  *  @param distMin est la distance minimale que l'on veut garder entre les boids
+  */
+
+
+  public void ruleDistanceMin(BoidNew[] boidTab, int distMin) //Garder une distance minimale séparant les Boid
+	{
+		int cX = 0;
+		int cY = 0;
+		for( int j = 0; (j < boidTab.length) ; j++)
+		{
+			if (this != boidTab[j])
+	        {
+	          if (this.distanceFrom(boidTab[j]) < distMin)//Si la distance est trop petite
+	          {
+	            cX += (1/1)*(this.x - boidTab[j].x);
+							cY += (1/1)*(this.y - boidTab[j].y);//On décrémente cX de la distance trop courte
+	          }
+	        }
+		}
+		this.addAccelerationX(cX); //On retranche cette distance à l'accelerationX
+		this.addAccelerationY(cY); //On retranche cette distance à l'accelerationX
+	}
+
+  /**
+  * ruleVelocity est une regle pour les boids
+  * <p>On calule la vitesse moyenne des Preys de boidsHerds
+  * <p>On ajoute cette vitesse moyenne à l'acceleration du boid
+  *  @param boidsHerds est le troupeau dans lequel se trouve le boid
+  */
+
+
+  public void ruleVelocity(BoidNew[] boidTab) //Les boids tendent à s'aligner en Vitesse
+  {
+    int cX = 0;
+    int cY = 0;
+    int counter=1;
+    for( int j = 0; (j < boidTab.length); j++)
+    {
+      if (this != boidTab[j])
+      {
+          cX += boidTab[j].getVelocityX(); // Contient la somme des vitesses en X
+          cY += boidTab[j].getVelocityY(); // Contient la somme des vitesses en Y
+          counter++;
+      }
+    }
+    this.addAccelerationX(cX/( counter)); //On ajoute à l'acceleration une portion de la somme des vitesses
+    this.addAccelerationY(cY/( counter));
+  }
+
 
 /** Permet de limiter la vitesse du boid
 * @param vLimX vitesse en x
@@ -112,50 +205,78 @@ public abstract class BoidNew extends Point{
 * @param Ymin position en y min
 */
 
-  public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin)
+  public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin, int setAcc)
   {
       if(this.x < Xmin)
       {
-        this.addAccelerationX(150);
+        this.addAccelerationX(setAcc);
       }
       if(this.y < Ymin)
       {
-        this.addAccelerationY(150);
+        this.addAccelerationY(setAcc);
       }
       if(this.x > Xmax )
       {
-        this.addAccelerationX(-150);
+        this.addAccelerationX(-setAcc);
       }
       if(this.y > Ymax )
       {
-        this.addAccelerationY(-150);
+        this.addAccelerationY(-setAcc);
       }
   }
 
+  /**
+  * Est une methode pour les boids
+  * <p>elle permet aux proies de s'eloigner des prédateurs
+  * La proie regarde l'ensembre des prédateurs pour s'eloigner
+  * de ceux qui sont plus proches que distMin
+  * La proie prend la vitesse en x et y du prédateur trop proche
+  * et modifie son accélération pour s'en éloigner
+  *  @param boidsHerds est le troupeau dans lequel se trouve la proie
+  */
+  public void flee(BoidNew[] boidTab, int distMin, int setAcc) { //methode pour fuir les predateurs
+		for( int j = 0; (j < boidTab.length); j++)
+		{
+			 if (this.distanceFrom(boidTab[j]) < distMin)//Si la proie est trop proche d'un predateur
+			 {
+				if(boidTab[j].getVelocityX() >= 0){this.addAccelerationX(setAcc);}//on modifie son acceleration pour eviter le predateur
+				else {this.addAccelerationX(-setAcc);}
+				if(boidTab[j].getVelocityY() >= 0){this.addAccelerationY(setAcc);}
+				else {this.addAccelerationY(-setAcc);}
+			}
+		}
+	}
 
 
+	/**
+	* Est une methode pour les boids
+	* <p>elle permet au prédateur de se rapprocher des proies
+	* <p> Le predateur cherche la proie la plus proche,
+	* <p>On ajoute a l'acceleration sa distance par rapport a la proie,
+	* <p>On fait concorder la vitesse du predateur a la vitesse de la proie,
+	*  @param boidsHerds est le troupeau dans lequel se trouve la proie
+	*/
+	public void hunt(BoidNew[] boidTab) {
+    if(boidTab.length > 0)
+    {
+      double distMin= this.distanceFrom(boidTab[0]);
+  		BoidNew nearestBoid = boidTab[0];
+  		for( int i =1; (i < boidTab.length); i++)// Le predateur cherche la proie la plus proche
+  		{
+  			if(this.distanceFrom(boidTab[i]) < distMin)
+  			nearestBoid = boidTab[i];
+  		}
+  		this.addAccelerationX((nearestBoid.x-this.x));//on ajoute a l'acceleration sa distance par rapport a la proie
+  		this.addAccelerationY((nearestBoid.y-this.y));
+  		this.addAccelerationX(nearestBoid.getVelocityX());//on fait concorder la vitesse du predateur a la vitesse de la proie
+  		this.addAccelerationY(nearestBoid.getVelocityY());
+    }
+	}
 
-
-
-
-  public abstract void move(BoidsNew BoidsLists);
-   /**
-  * Methode abstraite implémentée dans les sous classes de BoidNew
-  *<p> Permet le mouvement du boid */
-
-  public abstract void flee(BoidsNew BoidsLists);
   /**
  * Methode abstraite implémentée dans les sous classes de BoidNew
- *<p> Permet au boid de s'echapper d'autres boids */
-
-  public abstract void hunt(BoidsNew BoidsLists);
-  /**
- * Methode abstraite implémentée dans les sous classes de BoidNew
- * <p>Permet au boid de chasser d'autres boids */
-
-
-
-
+ *<p> Permet le mouvement du boid */
+  public abstract void move(BoidsNew boids);
 
 
 
@@ -223,8 +344,8 @@ public abstract class BoidNew extends Point{
   public void setOrientation(double angle) {
 	 double vx=this.velocityX;
 	 double vy= this.velocityY;
-	 this.velocityX=Math.sqrt(vx*vx+vy*vy)*Math.cos(angle);
-	 this.velocityY=Math.sqrt(vx*vx+vy*vy)*Math.sin(angle);
+	 this.accelerationX +=Math.sqrt(vx*vx+vy*vy)*Math.cos(angle);
+	 this.accelerationY +=Math.sqrt(vx*vx+vy*vy)*Math.sin(angle);
 	 this.orientation=angle;
   }
 

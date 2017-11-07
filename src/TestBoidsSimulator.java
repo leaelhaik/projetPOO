@@ -10,10 +10,13 @@ public class TestBoidsSimulator
   System.out.println("Veuillez saisir le nombre de Proies :");
   int nbPreys = sc.nextInt();
   if (nbPreys<0) {throw new IllegalArgumentException("Le nombre de Proies ne peut pas être négatif");}
-  System.out.println("Veuillez saisir le nombre de Predateurs :");
+  System.out.println("Veuillez saisir le nombre de poissons de taille moyenne :");
+  int nbMiddle = sc.nextInt();
+  if (nbMiddle<0) {throw new IllegalArgumentException("Le nombre de poissons de taille moyenne ne peut pas être négatif");}
+  System.out.println("Veuillez saisir le nombre de Prédateurs :");
   int nbPredators = sc.nextInt();
   if (nbPredators<0) {throw new IllegalArgumentException("Le nombre de Predateurs ne peut pas être négatif");}
-  BoidsSimulator b = new BoidsSimulator(nbPredators,nbPreys);
+  BoidsSimulator b = new BoidsSimulator(nbPredators,nbPreys,nbMiddle);
   b.gui.setSimulable(b);
   }
 }

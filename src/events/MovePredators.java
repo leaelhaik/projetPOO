@@ -1,7 +1,7 @@
 package events;
 
 import events.Event;
-import boids.BoidsNew;
+import boids.*;
 
 public class MovePredators extends Event
 {

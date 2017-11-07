@@ -12,9 +12,9 @@ public class BoidsSimulator extends BoidsNew implements Simulable
   MovePredators n;
   public GUISimulator gui;
 
-  public BoidsSimulator(int nbPredators, int nbPreys)
+  public BoidsSimulator(int nbPredators, int nbPreys, int nbMiddle)
   {
-    super(nbPredators,nbPreys);
+    super(nbPredators,nbPreys,nbMiddle);
     this.gui =  new GUISimulator (1400 , 900 , Color . BLACK ) ;
     this.e = new EventManager(0, this);
 
@@ -31,10 +31,15 @@ public class BoidsSimulator extends BoidsNew implements Simulable
     {
       this.gui.addGraphicalElement( new Rectangle(this.PreysTab[i].x, this.PreysTab[i].y,Color.decode("#1f77b4"),Color.decode("#1f77b4"),2) );
     }
+    for(int i=0;i<this.MiddleTab.length;i++)//affichage des proies
+    {
+      this.gui.addGraphicalElement( new Rectangle(this.MiddleTab[i].x, this.MiddleTab[i].y,Color.decode("#ff0000"),Color.decode("#ff0000"),5) );
+    }
     for(int i=0; i<this.PredatorsTab.length ;i++)//affichage des predateurs
     {
-      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),5) );
+      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),10) );
     }
+
   }
 
 
@@ -48,14 +53,20 @@ public class BoidsSimulator extends BoidsNew implements Simulable
     {
       this.gui.addGraphicalElement( new Rectangle(this.PreysTab[i].x, this.PreysTab[i].y,Color.decode("#1f77b4"),Color.decode("#1f77b4"),2) );
     }
+    for(int i=0; i<this.MiddleTab.length ;i++)
+    {
+      this.gui.addGraphicalElement( new Rectangle(this.MiddleTab[i].x, this.MiddleTab[i].y,Color.decode("#ff0000"),Color.decode("#ff0000"),5) );
+    }
     for(int i=0; i<this.PredatorsTab.length ;i++)
     {
-      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),5) );
+      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),10) );
     }
     this.e.restart();
     //ajout de nouveaux events a la date 0
     this.e.addEvent(new MovePreys(0,this));
     this.e.addEvent(new MovePredators(0,this));
+    this.e.addEvent(new MoveMiddle(0,this));
+
 
 }
  }

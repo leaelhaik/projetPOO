@@ -10,6 +10,7 @@ public class EventManager extends Event implements Comparator<Event>
   public List<Event> list;
   private MovePreys mvPreys;
   private MovePredators mvPredators;
+  private MoveMiddle mvMiddle;
   public BoidsNew boids;
 
   public EventManager(int date, BoidsNew boids)
@@ -20,8 +21,10 @@ public class EventManager extends Event implements Comparator<Event>
     this.boids = boids;
     this.mvPreys = new MovePreys(0,boids);
     this.mvPredators = new MovePredators(0,boids);
+    this.mvMiddle = new MoveMiddle(0,boids);
     this.addEvent(mvPreys);
     this.addEvent(mvPredators);
+    this.addEvent(mvMiddle);
   }
 
   @Override
@@ -53,7 +56,13 @@ public class EventManager extends Event implements Comparator<Event>
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPredator s'est execute");
-                  this.addEvent(new MovePredators(currentDate+2,this.boids));
+                  this.addEvent(new MovePredators(currentDate+5,this.boids));
+                }
+                if(this.list.get(i) instanceof MoveMiddle) // si l'evenement est de type MovePredators
+                {
+                  this.list.get(i).execute();
+                  System.out.println("BoidsPredator s'est execute");
+                  this.addEvent(new MoveMiddle(currentDate+2,this.boids));
                 }
       }
     }

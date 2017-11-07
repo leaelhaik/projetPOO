@@ -10,14 +10,15 @@ public class BoidsNew {
 celui des predateurs
 et celui des proies
 */
-	protected Predator[] PredatorsTab;
-	protected Prey[] PreysTab;
+	public Predator[] PredatorsTab;
+	public Prey[] PreysTab;
+	public MiddleBoid[] MiddleTab;
 /** Construteur de la classe
 * @param nbPredators nombre de predateurs
 * @param nbPreys nombre de proies
 * On initialise aléatoirement les attributs des boids
 */
-	public BoidsNew(int nbPredators, int nbPreys)
+	public BoidsNew(int nbPredators, int nbPreys, int nbMiddle)
 	 {
 			this.PredatorsTab = new Predator[nbPredators];
 	    for(int i = 0;i<nbPredators;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
@@ -31,6 +32,12 @@ et celui des proies
 	      Random r = new Random();
 	      this.PreysTab[i] = new Prey(r.nextInt(1500),r.nextInt(1000), 750-r.nextInt(1500), 500-r.nextInt(1000), 750-r.nextInt(1000), 500-r.nextInt(1000));
 	    }
+			this.MiddleTab = new MiddleBoid[nbMiddle];
+			for(int i = 0;i<nbMiddle;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
+			{
+				Random r = new Random();
+				this.MiddleTab[i] = new MiddleBoid(r.nextInt(1500),r.nextInt(1000), 750-r.nextInt(1500), 500-r.nextInt(1000), 750-r.nextInt(1000), 500-r.nextInt(1000));
+			}
 	}
  /**Réécriture de la méthode toString
  * affiche la position, la vitesse, l'accélération de chaque boid
@@ -49,6 +56,13 @@ et celui des proies
 			df.format(this.PreysTab[i].getVelocityX()) + "," + df.format(this.PreysTab[i].getVelocityY()) + ") | acceleration:(" +
 			df.format(this.PreysTab[i].getAccelerationX()) + "," + df.format(this.PreysTab[i].getAccelerationX()) +" )] \n" ;
     }
+		s += "MIDDLE: \n";
+		for( int i=0; i< this.MiddleTab.length; i++)
+		{
+			s += "[" + i + " position:(" + df.format(this.MiddleTab[i].x) + "," + df.format(this.MiddleTab[i].y) + ") | vitesse:(" +
+			df.format(this.MiddleTab[i].getVelocityX()) + "," + df.format(this.MiddleTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.MiddleTab[i].getAccelerationX()) + "," + df.format(this.MiddleTab[i].getAccelerationX()) + ") ] \n" ;
+		}
 		s += "PREDATORS: \n";
 		for( int i=0; i< this.PredatorsTab.length; i++)
 		{
@@ -56,6 +70,7 @@ et celui des proies
 			df.format(this.PredatorsTab[i].getVelocityX()) + "," + df.format(this.PredatorsTab[i].getVelocityY()) + ") | acceleration:(" +
 			df.format(this.PredatorsTab[i].getAccelerationX()) + "," + df.format(this.PredatorsTab[i].getAccelerationX()) + ") ] \n" ;
 		}
+
     return s;
   }
 
@@ -82,6 +97,15 @@ Méthode qui fait bouger les predateurs seulement
 		{
 			this.PreysTab[i].move(this);
 		}
+	}
+
+	public void moveMiddle()
+	{
+		for(int i =0; i< this.MiddleTab.length ; i++)
+		{
+			this.MiddleTab[i].move(this);
+		}
+
 	}
 	/**
 	Méthode qui fait bouger tous les boids
@@ -121,6 +145,16 @@ Méthode qui fait bouger les predateurs seulement
 			this.PreysTab[i].setVelocityY( 500-r.nextInt(1000));
 			this.PreysTab[i].setAccelerationX( 750-r.nextInt(1500));
 			this.PreysTab[i].setAccelerationY( 500-r.nextInt(1000));
+
+		}
+		for(int i = 0;i< this.MiddleTab.length;i++)
+		{
+			Random r = new Random();
+			this.MiddleTab[i].setLocation(r.nextInt(1500),r.nextInt(1000));
+			this.MiddleTab[i].setVelocityX( 750-r.nextInt(1500));
+			this.MiddleTab[i].setVelocityY( 500-r.nextInt(1000));
+			this.MiddleTab[i].setAccelerationX( 750-r.nextInt(1500));
+			this.MiddleTab[i].setAccelerationY( 500-r.nextInt(1000));
 
 		}
 	}
