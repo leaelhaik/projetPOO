@@ -4,17 +4,37 @@ import java.awt.Color ;
 import grid.cells.Cell;
 import java.lang.Math;
 
+
+/**
+* Classe Grid correspondant à la grille de cellules
+*/
 public class Grid {
 
+	/**
+	 * matrice des cellules donc tableau Cell[][] 
+	*/ 
 	private Cell[][] cellMat;
+	/**
+	* hauteur de la grille
+	*/
 	private int length;
+	/**
+	 * largeur de la grille
+	 */	
 	private int width;
-
+	/**
+	 * 
+	 */
 	private int n_State;
 
-//----------------------------------------------------------------------------
-// Créer une grille length*width
 
+	
+/**
+ * Constructeur Grid par défaut qui crée la grille de taille lengthxwidth
+ * @param length hauteur de la grille souhaitée
+ * @param width largeur de la grille
+ * @param nbr nombre d'etat possible pour les cellules
+ */	
 public Grid(int length, int width,int nbr) {
 	this.length=length;
 	this.width=width;
@@ -26,16 +46,13 @@ public Grid(int length, int width,int nbr) {
 
 		}
 	}
-
-
 }
-public int getn_State()
-{
-	return this.n_State;
-}
-//------------------------------------------------------------------------
-// Créer une grille identique à grid
 
+
+/**
+ * Constructeur par copie
+ * @param grid
+ */
 public Grid(Grid grid) {
 	this.length=grid.getLength();
 	this.width=grid.getWidth();
@@ -48,6 +65,22 @@ public Grid(Grid grid) {
 	}
 }
 
+
+/**
+ * Méthode accessuer getnState 
+ * @return n_State
+ */
+public int getn_State()
+{
+	return this.n_State;
+}
+
+/**
+ * Méthode accesseur pour une cellule
+ * @param i la position en i sur la matrice (ligne)
+ * @param j la position en j sur la matrice (colonne)
+ * @return Cell la cellule en position (i,j)
+*/
 public Cell getCell(int i, int j) {
 	if (i> this.length || j> this.width)
 	{
@@ -56,8 +89,26 @@ public Cell getCell(int i, int j) {
 	return this.cellMat[i][j];
 }
 
-//------------------------------------------------------------------------------
-// Enlever des zéros dans la grid pour la ségrégation
+/**
+ * Méthode accesseur getLength
+ * @return length la longueur
+ */
+public int getLength() {
+	return this.length;
+}
+
+/**
+ * Méthode accesseur getWidth
+ * @return width la largeur
+ */
+public int getWidth() {
+	return this.width;
+}
+
+
+/**
+ * Méthode pour enlever des zéros dans la grid pour la ségrégation
+ */
 public void GridMoinsZero()
 {
 	if (this.n_State<7){
@@ -75,8 +126,9 @@ public void GridMoinsZero()
 	}
 }
 
-//Rajouter des 0 si on a beaucoup d'états
-
+/**
+ * Méthode pour rajouter des zeros si on a beaucoup d'etats
+ */
 public void GridPlusZero()
 {
 
@@ -95,9 +147,12 @@ public void GridPlusZero()
 
 }
 
-//------------------------------------------------------------------------------
-// Retourne un tableau avec les voisins
-
+/**
+ * Méthode getNeighbors
+ * @param i la ligne de la cellule
+ * @param j la colonne de la cellule
+ * @return Cell[] un tableau avec les voisins
+ */
 public Cell[] getNeighbors(int i, int j) {
 	Cell[] neighbors = {getCell(Math.floorMod(i-1,this.length),j),
 			getCell(Math.floorMod(i+1,this.length),j),
@@ -111,9 +166,14 @@ public Cell[] getNeighbors(int i, int j) {
 
 }
 
-//-----------------------------------------------------------------------------
-// Compte le nombre de cellule dans l'état k dans le voisinage de this (les morts)
 
+/**
+ *  Compte le nombre de cellule dans l'état k dans le voisinage d'une cellule
+ * @param i la position de la ligne de la cellule
+ * @param j la position de la colonne de la cellule
+ * @param k l'etat recherché
+ * @return int le nombre de cellules correspondantes
+ */
 public int countStateK(int i, int j,int k) {
 	int count = 0;
 	for (int l=0; l< getNeighbors(i,j).length; l++) {
@@ -123,8 +183,11 @@ public int countStateK(int i, int j,int k) {
 	}
 	return count;
 }
-//------------------------------------------------------------------------------
-// Reinitialise la grille
+
+
+/**
+ * Reinitialise la grille
+ */
 public void reInitgrid() {
 	for (int i=0; i < length; i++) {
 		for (int j = 0; j < width; j++) {
@@ -133,8 +196,13 @@ public void reInitgrid() {
 	}
 }
 
-//------------------------------------------------------------------------------
-// Compte le nombre de cellule dans l'état k+1 dans le voisinage (les vivants)
+/**
+ * Compte le nombre de cellule dans l'état k+1 dans le voisinage (les vivants)
+ * @param i la ligne de la cellule
+ * @param j la colonne de la cellule
+ * @param k l'etat précedent
+ * @return int le nombre de cellules correspondantes
+ */
 public int countStateK_1(int i, int j,int k) {
 	int count = 0;
 	for (int l=0; l< getNeighbors(i,j).length; l++) {
@@ -144,8 +212,14 @@ public int countStateK_1(int i, int j,int k) {
 	}
 	return count;
 }
-//--------------------------------------------------------------
-// Compte les voisins de même couleur et les logements vacants
+
+/**
+ * Compte les voisins de même couleur et les logements vacants
+ * @param i la ligne de la cellule
+ * @param j la colonne de la cellule
+ * @param k l'etat précedent
+ * @return int le nombre de cellules correspondantes
+ */
 public int countVoisinMemeCouleur(int i, int j, int k){
 	int count = 0;
 	for (int l=0; l< getNeighbors(i,j).length; l++) {
@@ -156,6 +230,11 @@ public int countVoisinMemeCouleur(int i, int j, int k){
 	return count;
 }
 
+/**
+ * Selection de la couleur en fonction du nombre d'etat possible
+ * @param e le nombre de l'etat
+ * @return String la couleur adapté
+ */
 public void setStateCell(int i, int j, int cellState) {
 	if (i> this.length || j> this.width)
 	{
@@ -164,15 +243,12 @@ public void setStateCell(int i, int j, int cellState) {
 	this.getCell(i, j).setCellState(cellState);
 }
 
-public int getLength() {
-	return this.length;
-}
 
-public int getWidth() {
-	return this.width;
-}
-
-
+/**
+ * Selection de la couleur
+ * @param e l'int de la case correspondant à l'echelle de couleur 
+ * @return String une valeur hexa
+ */
 public String Couleur(int e)
 {
 	if (e>20) {throw new IllegalArgumentException("Le nombre de couleurs est supérieur à celui autorisé");}
