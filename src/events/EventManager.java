@@ -4,26 +4,24 @@ import java.util.ArrayList;
 import boids.*;
 
 
-public class EventManager extends Event implements Comparator<Event>
+public class EventManager extends Event
 {
   public int date;
-  public int currentDate;
   public ArrayList<Event> list;
   private MovePreys mvPreys;
   private MovePredators mvPredators;
   private MoveMiddle mvMiddle;
   public Boids boids;
-  
-  public EventManager(int date) 
+
+  public EventManager(int date)
   {
 	  super(date);
-	  this.currentDate=0;
   }
-  
+
   public EventManager(int date, Boids boids)
   {
     super(date);
-    this.currentDate = 0;
+    this.date = 0;
     this.list = new ArrayList<Event>(); // l'event manager possede une liste d'evenements
     this.boids = boids;
     this.mvPreys = new MovePreys(0,boids);
@@ -51,35 +49,35 @@ public class EventManager extends Event implements Comparator<Event>
   {
     for(int i  = this.list.size()-1; i>= 0; i--)
     {
-      if ( (this.list.get(i)).getDate() == currentDate)
+      if ( (this.list.get(i)).getDate() == this.date)
       {
                 if(this.list.get(i) instanceof MovePreys) // si l'evenement est de type MovePreys
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPrey  s'est execute");
-                  this.addEvent(new MovePreys(currentDate+1,this.boids));
+                  this.addEvent(new MovePreys(this.date+1,this.boids));
                 }
                 if(this.list.get(i) instanceof MovePredators) // si l'evenement est de type MovePredators
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPredator s'est execute");
-                  this.addEvent(new MovePredators(currentDate+5,this.boids));
+                  this.addEvent(new MovePredators(this.date+5,this.boids));
                 }
                 if(this.list.get(i) instanceof MoveMiddle) // si l'evenement est de type MovePredators
                 {
                   this.list.get(i).execute();
                   System.out.println("BoidsPredator s'est execute");
-                  this.addEvent(new MoveMiddle(currentDate+2,this.boids));
+                  this.addEvent(new MoveMiddle(this.date+2,this.boids));
                 }
       }
     }
   }
 
-  public void removeObsoleteEvents() // enleve les evenements antérieurs a currentDate de la liste
+  public void removeObsoleteEvents() // enleve les evenements antérieurs a this.date de la liste
   {
     for(int i  = this.list.size()-1; i>= 0; i--)
     {
-      if((this.list.get(i)).getDate()< this.currentDate)
+      if((this.list.get(i)).getDate()< this.date)
       {
         this.list.remove(i);
       }
@@ -90,12 +88,12 @@ public class EventManager extends Event implements Comparator<Event>
 
   public int getCurrenDate()//Renvoie la date courante
   {
-    return this.currentDate;
+    return this.date;
   }
 
   public void restart()//Vide la liste
   {
-    this.currentDate = 0;
+    this.date = 0;
     for(int i  = this.list.size()-1; i>= 0; i--)
     {
       this.list.remove(i);
@@ -109,25 +107,6 @@ public class EventManager extends Event implements Comparator<Event>
   }*/
 
 
-
-
-  public boolean isFinished()//methode qui verifie si il reste des evenements à executer
-  {
-    for(Event l: this.list)
-    {
-      if (l.getDate() >this.currentDate)
-      {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  public int compare(Event e,Event e1)//permet de comprer deux event par leur date
-  {
-  return (int)(e.getDate() - e1.getDate());
-  }
-
   public void addEvent(Event e)//ajoute un evenement à la liste
   {
     list.add(e);
@@ -137,10 +116,10 @@ public class EventManager extends Event implements Comparator<Event>
 
   public void next()
   {
-    System.out.println("Next... currentDate:" + this.currentDate + ",\n");
+    System.out.println("Next... this.date:" + this.date + ",\n");
     this.execute();
     this.removeObsoleteEvents();
-    currentDate++;
+    this.date++;
 
   }
 
