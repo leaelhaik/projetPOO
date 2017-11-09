@@ -1,9 +1,11 @@
 package boids;
 import java.awt.Point;
 import java.util.Random;
+
 /**
 * Classe Boid, sous clase de Point
 * <p>Possède une vitesse en X et Y ainsi qu'une accélération en X et Y */
+
 public abstract class Boid extends Point{
 /**
 *velocityX: Vitesse en x,

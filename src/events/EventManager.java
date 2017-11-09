@@ -1,5 +1,6 @@
 package events;
-import java.util.*;
+import java.util.Comparator;
+import java.util.ArrayList;
 import boids.*;
 
 
@@ -7,12 +8,18 @@ public class EventManager extends Event implements Comparator<Event>
 {
   public int date;
   public int currentDate;
-  public List<Event> list;
+  public ArrayList<Event> list;
   private MovePreys mvPreys;
   private MovePredators mvPredators;
   private MoveMiddle mvMiddle;
   public Boids boids;
-
+  
+  public EventManager(int date) 
+  {
+	  super(date);
+	  this.currentDate=0;
+  }
+  
   public EventManager(int date, Boids boids)
   {
     super(date);

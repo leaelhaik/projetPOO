@@ -21,7 +21,7 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testBalls testBallsSimulator testGridConwaySimulator testGridnSimulator testVacants testSchellingSimulator testBoids testBoidsSimulator 
+all: testBalls testBallsSimulator testGridConwaySimulator testGridnSimulator testVacants testSchellingSimulator testBoids testEventManager testBoidsSimulator 
 
 testBalls:
 	javac -d bin -sourcepath src src/TestBalls.java
@@ -77,6 +77,9 @@ exeSchellingSimulator:
 
 exeBoids:
 	java -classpath bin TestBoids
+
+exeEventManager:
+	java -classpath bin TestEventManager
 
 exeBoidsSimulator:
 	java -classpath bin:bin/gui.jar TestBoidsSimulator
