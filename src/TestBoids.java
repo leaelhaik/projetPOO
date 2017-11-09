@@ -3,7 +3,7 @@ import boids.Boids;
 public class TestBoids{
   public static void main ( String[] args )
   {
-    Boids n = new Boids(6);
+    Boids n = new Boids(6,0,0);
     System.out.println( n.toString());
 /*
   n.Rule1();
@@ -19,7 +19,6 @@ public class TestBoids{
     {
       n.moveBoids();
       System.out.println( n.toString());
-      n.resetAcceleration();
     }
   }
 }

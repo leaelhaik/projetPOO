@@ -6,9 +6,9 @@ import boids.*;
 public class MovePreys extends Event
 {
 
-  public BoidsNew boids;
+  public Boids boids;
 
-  public MovePreys(int date, BoidsNew boids)
+  public MovePreys(int date, Boids boids)
   {
     super(date);
     this.boids = boids;

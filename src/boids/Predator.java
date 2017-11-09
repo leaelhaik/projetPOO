@@ -2,7 +2,7 @@ package boids;
 /**
 * Classe Predator, sous classe de BoidNew
 */
-public class Predator extends BoidNew {
+public class Predator extends Boid {
 
 
 	public Predator(int x, int y, double vx, double vy, double ax, double ay) {
@@ -20,8 +20,8 @@ public class Predator extends BoidNew {
 		* <p>On actualise la position
 		*  @param boidsHerds est le troupeau dans lequel se trouve Prey
 		*/
-	@Override
-	public void move(BoidsNew boidsHerds) {
+	
+	public void move(Boids boidsHerds) {
 			resetAcceleration();
 		ruleDistanceMin(boidsHerds.PredatorsTab, 400);
 		this.hunt(boidsHerds.MiddleTab);

@@ -25,6 +25,8 @@ public class Balls extends Point
       this.direction[i]= R.nextInt(3); // et des directions aléatoires
     }
   }
+  
+  
 //-------------------------------------------
 // Accès à l'élement i :
 
@@ -32,6 +34,8 @@ public class Balls extends Point
   {
        return this.getTab()[i];
  }
+  
+  
 //-------------------------------------------
 // Accès à la longueur :
 

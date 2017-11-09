@@ -21,17 +21,11 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testBallsSimulator testGridConwaySimulator testVacants testBoidsSimulator testGridnSimulator testSchellingSimulator
+all: testBalls testBallsSimulator testGridConwaySimulator testGridnSimulator testVacants testSchellingSimulator testBoids testBoidsSimulator 
 
-testBoids:
-	javac -d bin -sourcepath src src/TestBoids.java
+testBalls:
+	javac -d bin -sourcepath src src/TestBalls.java
 
-testVacants:
-	javac -d bin -sourcepath src src/TestVacants.java
-	
-testBoidsSimulator:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
-	
 testBallsSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
 
@@ -41,17 +35,30 @@ testGridConwaySimulator:
 testGridnSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGridnSimulator.java
 
+testVacants:
+	javac -d bin -sourcepath src src/TestVacants.java
+
 testSchellingSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestSchellingSimulator.java
 
+testBoids:
+	javac -d bin -sourcepath src src/TestBoids.java
+
 testEventManager:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
+
+testBoidsSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
+
+
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin TestGUI
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
 
+exeBalls:
+	java -classpath bin TestBalls
 
 exeBallsSimulator:
 	java -classpath bin:bin/gui.jar TestBallsSimulator
@@ -62,19 +69,17 @@ exeGridConwaySimulator:
 exeGridnSimulator:
 	java -classpath bin:bin/gui.jar TestGridnSimulator
 
+exeVacants:
+	java -classpath bin TestVacants
+
 exeSchellingSimulator:
 	java -classpath bin:bin/gui.jar TestSchellingSimulator
 
-exeBoidsSimulator:
-	java -classpath bin:bin/gui.jar TestBoidsSimulator
-
-exeEventManager:
-	java -classpath bin:bin/gui.jar TestEventManager
-
 exeBoids:
 	java -classpath bin TestBoids
-exeVacants:
-	java -classpath bin TestVacants
+
+exeBoidsSimulator:
+	java -classpath bin:bin/gui.jar TestBoidsSimulator
 
 clean:
 	rm -rf bin/*.class

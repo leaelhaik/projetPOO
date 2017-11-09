@@ -2,7 +2,7 @@ package events;
 
 public abstract class Event // classe abstraite sur-classe de différents types d'evenements
 {
-  private int date;
+  protected int date;
 
 
   public Event(int date)

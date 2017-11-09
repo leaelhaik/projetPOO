@@ -11,9 +11,9 @@ public class EventManager extends Event implements Comparator<Event>
   private MovePreys mvPreys;
   private MovePredators mvPredators;
   private MoveMiddle mvMiddle;
-  public BoidsNew boids;
+  public Boids boids;
 
-  public EventManager(int date, BoidsNew boids)
+  public EventManager(int date, Boids boids)
   {
     super(date);
     this.currentDate = 0;

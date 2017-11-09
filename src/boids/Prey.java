@@ -5,7 +5,7 @@ package boids;
 * <p>Reprend le constructeur de BoidNew
 */
 
-public class Prey extends BoidNew {
+public class Prey extends Boid {
 /** Prey a les mêmes parametres que BoidNew
 */
 	public Prey(int x, int y, double vx, double vy, double ax, double ay) {
@@ -23,8 +23,8 @@ public class Prey extends BoidNew {
 	*  @param boidsHerds est le troupeau dans lequel se trouve Prey
 	*/
 
-	@Override
-	public void move(BoidsNew boidsHerds) {
+	
+	public void move(Boids boidsHerds) {
   //methode qui met en mouvement la proie
 		this.ruleHerd(boidsHerds.PreysTab);
 		this.ruleDistanceMin(boidsHerds.PreysTab,10);

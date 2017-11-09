@@ -3,12 +3,12 @@ package events;
 import events.Event;
 import boids.*;
 
-public class MovePredators extends Event
+public class MoveMiddle extends Event
 {
 
   public Boids boids;
 
-  public MovePredators(int date, Boids boids)
+  public MoveMiddle(int date, Boids boids)
   {
     super(date);
     this.boids = boids;
@@ -16,7 +16,7 @@ public class MovePredators extends Event
 
   public void execute() // réécriture de la méthode
   {
-    this.boids.movePredators(); // l'evenement fait bouger les predateurs
+    this.boids.moveMiddle(); // l'evenement fait bouger les predateurs
   }
 
 

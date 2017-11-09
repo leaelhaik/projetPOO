@@ -4,7 +4,7 @@ import gui.*;
 import java.awt.Color;
 import boids.*;
 
-public class BoidsSimulator extends BoidsNew implements Simulable
+public class BoidsSimulator extends Boids implements Simulable
 {
 
   EventManager e;

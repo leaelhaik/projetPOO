@@ -1,194 +1,162 @@
 package boids;
+/** Classe Boids
+* permet de regrouper les boids
+*/
 import java.util.Random;
-import java.lang.Math;
-
-
-public class Boids extends Boid{
-
-  public Boid[] tab; //La classe Boids est un tableau de Boid
-
-  public Boids(int nb)
-  {
-    this.tab = new Boid[nb];
-    for(int i = 0;i<nb;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
-    {
-      Random r = new Random();
-      this.tab[i] = new Boid(r.nextInt(500),r.nextInt(500));
-      this.tab[i].setVelocityX(250-r.nextInt(500));
-      this.tab[i].setVelocityY(250-r.nextInt(500));
-      this.tab[i].setAccelerationX(250-r.nextInt(500));
-      this.tab[i].setAccelerationY(250-r.nextInt(500));
-
-    }
-  }
-
-  @Override //Réécriture de la méthode toString
+import java.text.DecimalFormat;
+public class Boids {
+/**
+* Possede deux tableaux de boids,
+celui des predateurs
+et celui des proies
+*/
+	public Predator[] PredatorsTab;
+	public Prey[] PreysTab;
+	public MiddleBoid[] MiddleTab;
+/** Construteur de la classe
+* @param nbPredators nombre de predateurs
+* @param nbPreys nombre de proies
+* On initialise aléatoirement les attributs des boids
+*/
+	public Boids(int nbPredators, int nbPreys, int nbMiddle)
+	 {
+			this.PredatorsTab = new Predator[nbPredators];
+	    for(int i = 0;i<nbPredators;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
+	    {
+	      Random r = new Random();
+	      this.PredatorsTab[i] = new Predator(r.nextInt(1500),r.nextInt(1000), 750-r.nextInt(1500), 500-r.nextInt(1000), 750-r.nextInt(1000), 500-r.nextInt(1000));
+	    }
+	    this.PreysTab = new Prey[nbPreys];
+	    for(int i = 0;i<nbPreys;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
+	    {
+	      Random r = new Random();
+	      this.PreysTab[i] = new Prey(r.nextInt(1500),r.nextInt(1000), 750-r.nextInt(1500), 500-r.nextInt(1000), 750-r.nextInt(1000), 500-r.nextInt(1000));
+	    }
+			this.MiddleTab = new MiddleBoid[nbMiddle];
+			for(int i = 0;i<nbMiddle;i++) //On initialise aléatoirement les valeurs des attrbuts des Boid
+			{
+				Random r = new Random();
+				this.MiddleTab[i] = new MiddleBoid(r.nextInt(1500),r.nextInt(1000), 750-r.nextInt(1500), 500-r.nextInt(1000), 750-r.nextInt(1000), 500-r.nextInt(1000));
+			}
+	}
+ /**Réécriture de la méthode toString
+ * affiche la position, la vitesse, l'accélération de chaque boid
+ * <p> Pour plus de lisibilité, on n'affiche que 2 chiffres apres la virgule
+ */
+	@Override
   public String toString()
   {
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
     String s = new String();
-    for( int i=0; i< this.tab.length; i++)
+		s += "PREYS: \n";
+    for( int i=0; i< this.PreysTab.length; i++)
     {
-      s += "[" + i + " position:(" + this.tab[i].x + "," + this.tab[i].y + ") | vitesse:(" + this.tab[i].getVelocityX() + "," + this.tab[i].getVelocityY() + ") | acceleration:(" + this.tab[i].getAccelerationX()
-      + "," + this.tab[i].getAccelerationX() + ") ] \n" ;
+      s += "[" + i + " position:(" + df.format(this.PreysTab[i].x) + "," + df.format(this.PreysTab[i].y) + ") | vitesse:(" +
+			df.format(this.PreysTab[i].getVelocityX()) + "," + df.format(this.PreysTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.PreysTab[i].getAccelerationX()) + "," + df.format(this.PreysTab[i].getAccelerationX()) +" )] \n" ;
     }
+		s += "MIDDLE: \n";
+		for( int i=0; i< this.MiddleTab.length; i++)
+		{
+			s += "[" + i + " position:(" + df.format(this.MiddleTab[i].x) + "," + df.format(this.MiddleTab[i].y) + ") | vitesse:(" +
+			df.format(this.MiddleTab[i].getVelocityX()) + "," + df.format(this.MiddleTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.MiddleTab[i].getAccelerationX()) + "," + df.format(this.MiddleTab[i].getAccelerationX()) + ") ] \n" ;
+		}
+		s += "PREDATORS: \n";
+		for( int i=0; i< this.PredatorsTab.length; i++)
+		{
+			s += "[" + i + " position:(" + df.format(this.PredatorsTab[i].x) + "," + df.format(this.PredatorsTab[i].y) + ") | vitesse:(" +
+			df.format(this.PredatorsTab[i].getVelocityX()) + "," + df.format(this.PredatorsTab[i].getVelocityY()) + ") | acceleration:(" +
+			df.format(this.PredatorsTab[i].getAccelerationX()) + "," + df.format(this.PredatorsTab[i].getAccelerationX()) + ") ] \n" ;
+		}
+
     return s;
   }
 
-  public void reInit() //Réinitialise les valeurs de attributs des Boid
-  {
-    for(int i=0;i<this.tab.length;i++)
-    {
-      Random r = new Random();
-      this.tab[i].setLocation(r.nextInt(500),r.nextInt(500));
-      this.tab[i].setVelocityX(0);
-      this.tab[i].setVelocityY(0);
-      this.tab[i].setAccelerationX(0);
-      this.tab[i].setAccelerationY(0);
-
-    }
-  }
 
 
-  public void Rule1()//Calcule les centre de masse de chaque troupeau de Boid
-  {
-    for(int i =0; i< this.tab.length; i++)
-      {
-        int cX = 0; //Contient la somme des poisitions en X
-        int cY = 0; //Contient la somme des poisitions en Y
+/**
+Méthode qui fait bouger les predateurs seulement
+*/
+	public void movePredators()
+	{
+		for(int i =0; i< this.PredatorsTab.length ; i++)
+		{
+			this.PredatorsTab[i].move(this);
+		}
 
-      for(int j = 0; (j < this.tab.length) ; j++)
-        {
-          if (j !=i) //On inclut pas le boid i dans le calcul du centre de masse
-          {
-          cX += this.tab[j].x;
-          cY += this.tab[j].y;
-          }
-        }
-        this.tab[i].addAccelerationX(cX/(this.tab.length-1));//On ajoute le centre de masse à l'accéleration en X
-        this.tab[i].addAccelerationY(cY/(this.tab.length-1));//On ajoute le centre de masse à l'accéleration en Y
-      }
-  }
+	}
 
-  public void Rule2() //Garder une distance minimale séparant les Boid
-  {
-    for (int i =0; i<this.tab.length; i ++)
-    {
-      int cX = 0;
-      int cY = 0;
-      for( int j = 0; (j < this.tab.length) ; j++)
-      {
-        if (j !=i)
-        {
-          if (Math.abs(this.tab[i].x - this.tab[j].x) < 10 ) //Si la distance est trop petite
-          {
-            cX += -(this.tab[i].x - this.tab[j].x);//On décrémente cX de la distance trop courte
-          }
-          if (Math.abs(this.tab[i].y - this.tab[j].y) < 10 )
-          {
-            cY += -(this.tab[i].y - this.tab[j].y);//On décrémente cX de la distance trop courte
-          }
-        }
-      }
-      this.tab[i].addAccelerationX(cX); //On retranche cette distance à l'accelerationX
-      this.tab[i].addAccelerationX(cY); //On retranche cette distance à l'accelerationX
+	/**
+	Méthode qui fait bouger les proies seulement
+	*/
+	public void movePreys()
+	{
+		for(int i=0;i<this.PreysTab.length;i++)
+		{
+			this.PreysTab[i].move(this);
+		}
+	}
 
-    }
-  }
+	public void moveMiddle()
+	{
+		for(int i =0; i< this.MiddleTab.length ; i++)
+		{
+			this.MiddleTab[i].move(this);
+		}
 
-  public void Rule3() //Les boids tendent à s'aligner en Vitesse
-  {
-    for (int i =0; i<this.tab.length; i ++)
-    {
-      int cX = 0;
-      int cY = 0;
-      for( int j = 0; (j < this.tab.length); j++)
-      {
-        if (j !=i)
-        {
-          cX += this.tab[j].getVelocityX(); // Contient la somme des vitesses en X
-          cY += this.tab[j].getVelocityY(); // Contient la somme des vitesses en Y
-        }
-      }
-      this.tab[i].addAccelerationX(cX/(this.tab.length-1)); //On ajoute à l'acceleration une portion de la somme des vitesses
-      this.tab[i].addAccelerationX(cY/(this.tab.length-1));
-    }
-  }
+	}
+	/**
+	Méthode qui fait bouger tous les boids
+	*/
+	public void moveBoids()
+	{
+		for(int i =0; i< this.PredatorsTab.length ; i++)
+		{
+			this.PredatorsTab[i].move(this);
+		}
+		for(int i=0;i<this.PreysTab.length;i++)
+		{
+			this.PreysTab[i].move(this);
+		}
+	}
 
-  public void limitVelocity(int vLim) // Limite la vitesse des Boids à la vitesse vLim
-  {
-    for(int i= 0;i<this.tab.length;i++)
-    {
-      if(Math.abs(this.tab[i].getVelocityX()) > vLim)
-      {
-        this.tab[i].setVelocityX((this.tab[i].getVelocityX()/Math.abs(this.tab[i].getVelocityX()))*vLim);
-      }
-      if(Math.abs(this.tab[i].getVelocityY()) > vLim)
-      {
-        this.tab[i].setVelocityY((this.tab[i].getVelocityY()/Math.abs(this.tab[i].getVelocityY()))*vLim);
-      }
-    }
-  }
+/**
+* Permet de reinitialiser tous les boidsHerds
+*/
+	public void reInitBoids() //Réinitialise les valeurs de attributs des Boid
+	{
+ 		for(int i = 0;i< this.PredatorsTab.length;i++)
+		{
+			Random r = new Random();
+			this.PredatorsTab[i].setLocation(r.nextInt(1500),r.nextInt(1000));
+			this.PredatorsTab[i].setVelocityX( 750-r.nextInt(1500));
+			this.PredatorsTab[i].setVelocityY( 500-r.nextInt(1000));
+			this.PredatorsTab[i].setAccelerationX( 750-r.nextInt(1500));
+			this.PredatorsTab[i].setAccelerationY( 500-r.nextInt(1000));
 
+		}
+		for(int i = 0;i< this.PreysTab.length;i++)
+		{
+			Random r = new Random();
+			this.PreysTab[i].setLocation(r.nextInt(1500),r.nextInt(1000));
+			this.PreysTab[i].setVelocityX( 750-r.nextInt(1500));
+			this.PreysTab[i].setVelocityY( 500-r.nextInt(1000));
+			this.PreysTab[i].setAccelerationX( 750-r.nextInt(1500));
+			this.PreysTab[i].setAccelerationY( 500-r.nextInt(1000));
 
-  public void boundPosition(int Xmax,int Ymax,int Xmin,int Ymin)
-  {
+		}
+		for(int i = 0;i< this.MiddleTab.length;i++)
+		{
+			Random r = new Random();
+			this.MiddleTab[i].setLocation(r.nextInt(1500),r.nextInt(1000));
+			this.MiddleTab[i].setVelocityX( 750-r.nextInt(1500));
+			this.MiddleTab[i].setVelocityY( 500-r.nextInt(1000));
+			this.MiddleTab[i].setAccelerationX( 750-r.nextInt(1500));
+			this.MiddleTab[i].setAccelerationY( 500-r.nextInt(1000));
 
-    for(int i=0; i<this.tab.length;i++)
-    {
-      if(this.tab[i].x < Xmin)
-      {
-        this.tab[i].addAccelerationX(1200);
-        this.tab[i].addVelocityX(200);
+		}
+	}
 
-      }
-      if(this.tab[i].y < Ymin)
-      {
-        this.tab[i].addAccelerationY(700);
-        this.tab[i].addVelocityY(140);
-
-      }
-      if(this.tab[i].x > Xmax )
-      {
-        this.tab[i].addAccelerationX(-1200);
-        this.tab[i].addVelocityX(-200);
-      }
-      if(this.tab[i].y > Ymax )
-      {
-        this.tab[i].addAccelerationY(-700);
-        this.tab[i].addVelocityY(-140);
-      }
-    }
-  }
-
-  public void resetAcceleration() //Remet l'acceleration des Boids à 0
-  {
-    for (int i=0;i<this.tab.length;i++)
-    {
-      this.tab[i].setAccelerationX(0);
-      this.tab[i].setAccelerationY(0);
-    }
-  }
-
-  public void moveBoids() //Bouge les Boids selon les règles définies
-  {
-
-    this.resetAcceleration();
-    this.Rule1();
-    this.Rule2();
-    this.Rule3();
-
-    for(int i = 0; i< this.tab.length; i++)
-    {
-      this.tab[i].setAccelerationX((this.tab[i].getAccelerationX()/(float)4.0));
-      this.tab[i].setAccelerationY((this.tab[i].getAccelerationY()/(float)4.0));
-      this.tab[i].addVelocityX(this.tab[i].getAccelerationX());
-      this.tab[i].addVelocityY(this.tab[i].getAccelerationY());
-      this.tab[i].x += this.tab[i].getVelocityX();
-      this.tab[i].y += this.tab[i].getVelocityY();
-
-    }
-  }
-
-
-
-  }
+}
