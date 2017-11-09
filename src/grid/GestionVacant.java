@@ -11,7 +11,14 @@ public class GestionVacant extends Grid
      {
           super(length,width,nbr_color);
           this.vacants= new LinkedList<Cell>();
-          this.GridMoinsZero();
+          if (this.getn_State()<10)
+          {
+               this.GridMoinsZero();
+          }
+          if (this.getn_State()>=10)
+          {
+               this.GridPlusZero();
+          }
           for (int i=0; i < length; i++) {
      		for (int j = 0; j < width; j++){
                     if (this.getCell(i,j).getCellState()==0){
@@ -31,7 +38,14 @@ public class GestionVacant extends Grid
      public void reInitVac()
      {
           this.reInitgrid();
-          this.GridMoinsZero();
+          if (this.getn_State()<10)
+          {
+               this.GridMoinsZero();
+          }
+          if (this.getn_State()>=10)
+          {
+               this.GridPlusZero();
+          }
           LinkedList<Cell> newVacants = new LinkedList<Cell>();
           for (int i=0; i < this.getLength(); i++) {
      		for (int j = 0; j < this.getWidth(); j++){
