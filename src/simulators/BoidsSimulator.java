@@ -15,7 +15,7 @@ public class BoidsSimulator extends Boids implements Simulable
   public BoidsSimulator(int nbPredators, int nbPreys, int nbMiddle)
   {
     super(nbPredators,nbPreys,nbMiddle);
-    this.gui =  new GUISimulator (1400 , 900 , Color . BLACK ) ;
+    this.gui =  new GUISimulator (1400 , 900 , Color . WHITE ) ;
     this.e = new EventManager(0, this);
 
   }
@@ -29,15 +29,15 @@ public class BoidsSimulator extends Boids implements Simulable
     this.gui.reset();
     for(int i=0;i<this.PreysTab.length;i++)//affichage des proies
     {
-      this.gui.addGraphicalElement( new Rectangle(this.PreysTab[i].x, this.PreysTab[i].y,Color.decode("#1f77b4"),Color.decode("#1f77b4"),2) );
+      this.gui.addGraphicalElement( new Rectangle(this.PreysTab[i].x, this.PreysTab[i].y,Color.decode("#1f77b4"),Color.decode("#1f77b4"),5) );
     }
     for(int i=0;i<this.MiddleTab.length;i++)//affichage des proies
     {
-      this.gui.addGraphicalElement( new Rectangle(this.MiddleTab[i].x, this.MiddleTab[i].y,Color.decode("#ff0000"),Color.decode("#ff0000"),5) );
+      this.gui.addGraphicalElement( new Rectangle(this.MiddleTab[i].x, this.MiddleTab[i].y,Color.decode("#ff0000"),Color.decode("#ff0000"),10) );
     }
     for(int i=0; i<this.PredatorsTab.length ;i++)//affichage des predateurs
     {
-      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),10) );
+      this.gui.addGraphicalElement( new Rectangle(this.PredatorsTab[i].x, this.PredatorsTab[i].y,Color.decode("#00ff00"),Color.decode("#00ff00"),15) );
     }
 
   }
